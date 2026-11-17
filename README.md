@@ -1,10 +1,31 @@
-# domino-agents
+<div align="center">
 
-[![skills.sh](https://skills.sh/b/vmnog/domino-agents)](https://skills.sh/vmnog/domino-agents)
+<img src="assets/hero.webp" alt="A row of domino agents: each one wakes up, does its step (planning, testing, shipping) and tips over to wake the next" width="100%">
 
-**One chat runs your project. You answer questions and watch videos; AI sessions do the rest.**
+<h1>domino-agents</h1>
 
-## Who it's for, and what it fixes
+<p><strong>One chat runs your project. You answer questions and watch videos; AI sessions do the rest.</strong></p>
+
+<p>
+  <a href="https://skills.sh/vmnog/domino-agents"><img src="https://skills.sh/b/vmnog/domino-agents" alt="skills.sh"></a>
+  <a href="https://docs.claude.com/en/docs/claude-code/overview"><img src="https://img.shields.io/badge/Claude%20Code-plugin-D97757" alt="Claude Code plugin"></a>
+  <a href=".claude-plugin/plugin.json"><img src="https://img.shields.io/badge/version-0.1.0-111" alt="Version 0.1.0"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-111" alt="MIT license"></a>
+</p>
+
+<p>
+  <a href="#quick-start">Quick start</a> &nbsp;&middot;&nbsp;
+  <a href="#how-it-works">How it works</a> &nbsp;&middot;&nbsp;
+  <a href="#install">Install</a> &nbsp;&middot;&nbsp;
+  <a href="#a-normal-day">A normal day</a> &nbsp;&middot;&nbsp;
+  <a href="AGENTS.md">Other agents</a>
+</p>
+
+</div>
+
+---
+
+## What it is
 
 You use [Claude Code](https://docs.claude.com/en/docs/claude-code/overview), Anthropic's coding
 agent that edits your repository and runs commands itself, and you want several tickets built at
@@ -12,16 +33,7 @@ the same time without becoming the bottleneck.
 
 Running five agents at once is chaos without a plan. They ask questions while you are away, guess
 at screens nobody drew, edit the same files, and merge code nobody tested. domino-agents puts one
-chat in charge, the **Coordinator**. For each ticket it:
-
-1. checks the ticket is worth building now, and finds the cheapest version (the **MVP check**);
-2. asks you short questions with numbered options, until a builder has nothing left to guess
-   (the **grill**);
-3. gets the screens drawn first, when the ticket changes what people see (the **design gate**);
-4. starts one **builder** session in its own git worktree, which builds test-first and records a
-   video of itself using the app;
-5. reviews the code, shows you the video, and merges into `staging` (never `main`) on your OK;
-6. starts every ticket that merge unblocked, like **dominoes**.
+chat in charge, the **Coordinator**, and gives every ticket the same path from idea to merge.
 
 You decide and approve; sessions write, test and review the code. You don't have to read the code:
 you can still open any change, but the loop does not wait for you to. What makes that safe is the
@@ -31,6 +43,19 @@ and only then your OK.
 It was extracted from the working loop of a real product team, then dry-run on three test
 projects: an empty folder, an ongoing web app, and a command-line tool built end to end from a
 ticket to a release.
+
+## How it works
+
+For each ticket, the Coordinator:
+
+| Step | What happens |
+|---|---|
+| **1. MVP check** | Checks the ticket is worth building now, and finds the cheapest version. |
+| **2. Grill** | Asks you short questions with numbered options, until a builder has nothing left to guess. |
+| **3. Design gate** | Gets the screens drawn first, when the ticket changes what people see. |
+| **4. Build** | Starts one **builder** session in its own git worktree. It builds test-first and records a video of itself using the app. |
+| **5. Review** | Reviews the code, shows you the video, and merges into `staging` (never `main`) on your OK. |
+| **6. Domino** | Starts every ticket that merge unblocked. |
 
 ```text
 idea or ticket
@@ -43,32 +68,7 @@ idea or ticket
   → release: staging → main, when you ask
 ```
 
-## Words you'll see
-
-- **Skill**: a folder of instructions (a `SKILL.md`) that Claude loads when a task matches. This
-  repository is mostly skills.
-- **Plugin, marketplace**: Claude Code's package format, and a list of packages. This repository is
-  both, so `domino-agents@domino-agents` means "the domino-agents plugin from the domino-agents
-  marketplace".
-- **Session**: one Claude Code chat with its own memory of the conversation. The Coordinator is one
-  session; each builder is another.
-- **Worktree**: a second folder of the same git repository, on its own branch, so two sessions edit
-  at once without touching each other's files.
-- **MCP**: how Claude connects to an outside tool, such as Linear or Figma.
-- **Hook**: a script Claude Code runs before or after one of its own actions.
-- **Approver**: you, the one person who answers questions and OKs merges.
-- **Ticket, tracker, milestone**: a unit of work; where tickets live (Linear, GitHub Issues, Jira or
-  plain files in the repository); an ordered group of tickets with a "done when" line.
-- **Settled**: a ticket that passed its MVP check and its grill, so a builder can start.
-- **The gate**: your test and lint commands. Every builder runs them before it reports.
-- **Evidence**: what you review instead of code: a video and screenshots, or for a command-line
-  tool, a transcript of each command and its output.
-- **Board**: one drawn screen in a design tool (a Figma frame, say), not a Kanban board.
-- **Integration branch**: where every ticket merges first (`staging` or `develop`). Production
-  (`main`) gets it only at a release. "Staging" can also mean a deployed copy of the app, when you
-  have one.
-
-## What it does by itself, and what waits for you
+### What it does by itself, and what waits for you
 
 | Does without asking | Always waits for you |
 |---|---|
@@ -78,17 +78,10 @@ idea or ticket
 | Moves tickets in the tracker, keeps the release list | Hosting or infrastructure beyond what your config allows |
 | Argues with your priorities: an MVP check can propose to defer or cut a ticket | Overriding that MVP check, or any priority call |
 
-## What it costs
+## Quick start
 
-Each builder, designer and grill is a full Claude Code session, and several run at once. On the
-dry run, the setup plus one small ticket taken from MVP check to release used about $4 of usage at
-API prices. A day of five tickets in parallel costs several times that. The optional memory guard
-(below) keeps your computer from running out of memory, not your plan from running out of usage.
-
-## Try it on a throwaway repository
-
-The shortest path: Claude Code in a terminal, tickets as plain files, no GitHub remote, and no
-screens. The dry run used exactly this.
+Try it on a throwaway repository first. The shortest path: Claude Code in a terminal, tickets as
+plain files, no GitHub remote, and no screens. The dry run used exactly this.
 
 1. Make a folder with a tiny program and one test, or leave it empty: the setup then makes "set up
    the stack and the tests" the first ticket.
@@ -117,6 +110,13 @@ screens. The dry run used exactly this.
 
 4. Say "take the first ticket". You get its MVP check and a grill round; answer it, and a builder
    starts in the background. Its evidence comes back to you for an OK.
+
+## What it costs
+
+Each builder, designer and grill is a full Claude Code session, and several run at once. On the
+dry run, the setup plus one small ticket taken from MVP check to release used about $4 of usage at
+API prices. A day of five tickets in parallel costs several times that. The optional memory guard
+(below) keeps your computer from running out of memory, not your plan from running out of usage.
 
 ## Before you start (a real project)
 
@@ -310,6 +310,36 @@ block.
 | The design skills (`better-ui`, `better-layout`, `transitions-dev`…) and a `prototype` skill | Designers, and builders on visible changes | Designers work from your project's own design rules |
 | A design MCP (Paper, Figma, Pencil) | Designers, the design gate | Boards are code variants and screenshots |
 
+## Words you'll see
+
+<details>
+<summary>A short glossary of the terms this README and the skills use</summary>
+
+- **Skill**: a folder of instructions (a `SKILL.md`) that Claude loads when a task matches. This
+  repository is mostly skills.
+- **Plugin, marketplace**: Claude Code's package format, and a list of packages. This repository is
+  both, so `domino-agents@domino-agents` means "the domino-agents plugin from the domino-agents
+  marketplace".
+- **Session**: one Claude Code chat with its own memory of the conversation. The Coordinator is one
+  session; each builder is another.
+- **Worktree**: a second folder of the same git repository, on its own branch, so two sessions edit
+  at once without touching each other's files.
+- **MCP**: how Claude connects to an outside tool, such as Linear or Figma.
+- **Hook**: a script Claude Code runs before or after one of its own actions.
+- **Approver**: you, the one person who answers questions and OKs merges.
+- **Ticket, tracker, milestone**: a unit of work; where tickets live (Linear, GitHub Issues, Jira or
+  plain files in the repository); an ordered group of tickets with a "done when" line.
+- **Settled**: a ticket that passed its MVP check and its grill, so a builder can start.
+- **The gate**: your test and lint commands. Every builder runs them before it reports.
+- **Evidence**: what you review instead of code: a video and screenshots, or for a command-line
+  tool, a transcript of each command and its output.
+- **Board**: one drawn screen in a design tool (a Figma frame, say), not a Kanban board.
+- **Integration branch**: where every ticket merges first (`staging` or `develop`). Production
+  (`main`) gets it only at a release. "Staging" can also mean a deployed copy of the app, when you
+  have one.
+
+</details>
+
 ## Files
 
 ```text
@@ -321,6 +351,7 @@ domino-agents/
 │   │                      agents/ (the builder and designer roles sessions play),
 │   │                      hooks/ (the optional memory guard)
 │   └── mvp-challenge/     the MVP check and its devil's-advocate prompt
+├── assets/               hero.webp, the animation at the top of this README
 ├── AGENTS.md              for agents other than Claude Code
 └── LICENSE                MIT
 ```
