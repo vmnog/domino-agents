@@ -2,7 +2,9 @@
 
 The loop needs six things from a tracker. Tracker → Tool picks the column; how to reach the tool
 (the MCP connector, the CLI, the auth) is in `docs/agents/issue-tracker.md`, written by the
-mattpocock-skills setup.
+mattpocock-skills setup. The approver runs that setup by typing `/setup-matt-pocock-skills` in the
+Claude Code message box; no agent may run it (SETUP.md → *The mattpocock-skills setup*). Linear and
+Jira are recorded there through its Other option, as prose.
 
 ## The six operations
 
@@ -12,7 +14,7 @@ mattpocock-skills setup.
 | **Open tickets of a milestone** | `list_issues` with the project, the open state types and the `projectMilestone` field | `gh issue list --milestone "<title>" --state open` | JQL `fixVersion = "<name>" AND statusCategory != Done` | Ticket files whose `Milestone:` line names it |
 | **Read and comment** | `get_issue`, `list_comments`, `save_comment` | `gh issue view <n> --comments`, `gh issue comment <n> --body-file -` | Read the issue and add a comment | Append `## <heading> (<date>)` to the ticket file |
 | **Blocked-by links** | `save_issue` with `blockedBy`; read back with `get_issue` and `fields: ["relations"]` (`list_issues` does not return them) | Issue dependencies ("Blocked by" in the sidebar, or `gh api` on the issue's `dependencies/blocked_by`); without them, a `Blocked by: #12, #14` line in the body | The "is blocked by" issue link | A `Blocked by:` line in the ticket file |
-| **Statuses** | Workflow statuses; add `<merged-status>` as a "started" status | Labels for in progress and `<merged-status>`; released = closed | Workflow statuses; add `<merged-status>` to the workflow | A `Status:` line |
+| **Statuses** | Workflow statuses; add `<merged-status>` as a "started" status | Labels for in progress and `<merged-status>`, created with `gh label create` when missing (SETUP.md §4.3); released = closed | Workflow statuses; add `<merged-status>` to the workflow | A `Status:` line |
 | **Create a ticket in a milestone** | `save_issue` with the project and `projectMilestone` | `gh issue create --milestone "<title>"` | Create the issue with the fix version | A new file with `Milestone:` and `Status:` lines |
 
 ## Rules that hold on every tracker

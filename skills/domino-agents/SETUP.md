@@ -16,7 +16,9 @@ Read what exists; ask only what looking cannot answer.
   workflows in `.github/workflows/`.
 - `CLAUDE.md`, `AGENTS.md`, a glossary (`CONTEXT.md`, `GLOSSARY.md`), a decisions folder
   (`docs/decisions/`, `docs/adr/`).
-- `docs/agents/issue-tracker.md`: the mattpocock-skills setup's answer for the tracker.
+- What the mattpocock-skills setup writes (§2): `docs/agents/issue-tracker.md`,
+  `docs/agents/domain.md`, `docs/agents/triage-labels.md` when the `triage` skill is installed, and
+  an `## Agent skills` block in `CLAUDE.md` or `AGENTS.md`.
 - This session's tools and skills: `start_session` present means the runtime is `claude-desktop`;
   the `mattpocock-skills` skills and the design skills (`better-ui`); a tracker MCP (Linear, Jira); a design MCP
   (Paper, Figma, Pencil); `gh auth status`.
@@ -28,11 +30,54 @@ Show the approver one table: each prerequisite, present or missing, and what is 
 
 | Prerequisite | Needed for | When it is missing |
 |---|---|---|
-| `mattpocock-skills` installed, and `/mattpocock-skills:setup-matt-pocock-skills` run (`docs/agents/issue-tracker.md` exists) | The tracker answer, `grilling`, `tdd`, `codebase-design`, `code-review`, `to-tickets` | **Stop here.** Give the approver the two commands, `/plugin install mattpocock-skills@claude-plugins-official` and `/mattpocock-skills:setup-matt-pocock-skills`, and run the setup again after. Every later step reads the tracker answer. |
+| `mattpocock-skills` installed, and its setup run in this repository (every file in *The mattpocock-skills setup* below exists) | The tracker answer, `grilling`, `tdd`, `codebase-design`, `code-review`, `to-tickets` | **Stop here.** Hand the setup to the approver as *The mattpocock-skills setup* below says, and wait. Every later step reads the tracker answer. |
 | The design skills installed (`better-ui` at least), from four public sets: `npx skills add jakubkrehel/skills`, `emilkowalski/skills`, `Jakubantalik/transitions.dev`, `AgentsORG/design-engineering` | Designers and builders on anything a person sees | A project with a UI goes on only with the approver's yes: designers then work from the project's own rules alone. A project with no UI skips it. |
 | A tracker that answers one read call (list the milestones) | Every step | Stop and fix the connection. |
 | `gh` (or `glab`) logged in, when the repository has a remote | PRs, the duplicate-work check | Stop and ask the approver to log in. With no remote, round S asks about the code host instead. |
 | A design tool's MCP | The design gate's boards | Design → Tool is none: boards are code variants and screenshots (DESIGN.md). |
+
+### The mattpocock-skills setup
+
+**The approver runs it; you never do.** Its skill is marked non-invokable on purpose: no agent and
+no other skill may start it. Do not load it, run it, or write its files yourself. Hand it to the
+approver and wait for their word that it finished.
+
+**What to hand over.** Two commands, typed into this Claude Code session's message box, one at a
+time, each in a `text` code block:
+
+```text
+/plugin install mattpocock-skills@claude-plugins-official
+/setup-matt-pocock-skills
+```
+
+Say plainly: these are Claude Code commands, not terminal commands. They do not start with `!`
+and they do not go in a terminal, because a shell answers "no such file or directory". Never put
+them in a `bash` code block. When the install is new, Claude Code may need a restart before the
+second command appears in the `/` menu. If another command already uses the bare name, the
+namespaced form `/mattpocock-skills:setup-matt-pocock-skills` runs the same setup.
+
+**What the approver will be asked.** The setup proposes the tracker that matches the git remote.
+Its options are GitHub (needs `gh`), GitLab (needs `glab`), local markdown (files under
+`.scratch/`), or Other, where the approver describes the workflow in a paragraph and the setup
+records it as prose. Linear, Jira and every other tracker go through Other. When neither
+`CLAUDE.md` nor `AGENTS.md` exists, it asks which one to create.
+
+**What it writes**, all committed in this repository (there is no global mode, so each repository
+runs it once):
+
+- `docs/agents/issue-tracker.md` and `docs/agents/domain.md`;
+- `docs/agents/triage-labels.md`, only when the `triage` skill is installed;
+- an `## Agent skills` block in `CLAUDE.md` when it exists, else in `AGENTS.md`.
+
+Check for every one of them before you go on, not only `issue-tracker.md`. When one is missing,
+say which and ask the approver to run the setup again.
+
+**Labels.** `triage-labels.md` is only a mapping from roles to label names. On a fresh GitHub
+repository the labels may not exist yet. §4.3 checks every label this loop uses and creates the
+missing ones.
+
+**When to run it again.** Once per repository, before any engineering skill. Again only to switch
+trackers, or when a skill stops doing what its docs describe after a skills update.
 
 ## 3. Ask
 
@@ -71,8 +116,9 @@ ticket.
 
 1. Copy `config-template.md` to `docs/agents/domino-agents.md` and fill every field. A field the
    approver turned down says `none`.
-2. Add one entry to the `## Agent skills` block that the mattpocock-skills setup wrote into
-   `CLAUDE.md` (or `AGENTS.md`):
+2. Add one entry to the `## Agent skills` block that the mattpocock-skills setup wrote. It is in
+   `CLAUDE.md` when that file exists, else in `AGENTS.md`: the same rule the setup used. Never add
+   a second block in the other file.
 
    ```markdown
    ### Coordinator loop
@@ -81,8 +127,12 @@ ticket.
    ```
 
 3. Prepare the tracker: the merged-not-released status (when the tracker's API cannot add it, ask
-   the approver to add it in the tracker's settings), and the Later milestone. When a field says
-   `set by`, also create that ticket, first in milestone 1 and blocking every other ticket there:
+   the approver to add it in the tracker's settings), and the Later milestone. On GitHub or
+   GitLab, check that every label the loop uses exists: the status labels (TRACKERS.md →
+   *Statuses*) and, when `docs/agents/triage-labels.md` exists, each label it names. List them
+   (`gh label list`, `glab label list`) and create each missing one (`gh label create <name>`,
+   `glab label create --name <name>`). The setup files only map names; they may not create the
+   labels. When a field says `set by`, also create that ticket, first in milestone 1 and blocking every other ticket there:
    *Set up <what is missing: the stack, the tests, the evidence recorder>*. Its description lists
    the config fields that say `set by` it, and its builder fills them in the same change.
 4. Keep the evidence out of git: add Evidence → Folder to `.git/info/exclude` (local) or

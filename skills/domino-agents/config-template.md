@@ -36,7 +36,8 @@ guard find values by them.
 
 ## Tracker
 
-How to call it is in docs/agents/issue-tracker.md (written by the mattpocock-skills setup). This
+How to call it is in docs/agents/issue-tracker.md (written by the mattpocock-skills setup, which
+the approver runs as /setup-matt-pocock-skills; see SETUP.md). This
 section holds only what the loop adds.
 
 - Tool: <fill: linear | github | jira | local>

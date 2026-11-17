@@ -16,8 +16,8 @@ builders and designers do the rest.
    the reason. One answer, one update; batched answers get lost when a session ends. Done when a builder would have nothing left to guess: every word is in the glossary
    or decided, every state a person can meet is listed, and every number has its rule.
 4. **The tickets.** Split the feature into tickets one session can finish, all in the brainstorm's
-   milestone, each blocked by the one it needs (the approver can run
-   `/mattpocock-skills:to-tickets` for this):
+   milestone, each blocked by the one it needs (the approver can type
+   `/to-tickets` in the message box for this):
    - `Explore: …` for each screen or state with no board (a designer; DESIGN.md);
    - `Backend: …` once the data shape is settled, which can start while the boards are drawn;
    - `Build: …` for the screens, blocked by the pick and by the backend.
