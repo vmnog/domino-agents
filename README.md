@@ -1,5 +1,7 @@
 # domino-agents
 
+[![skills.sh](https://skills.sh/b/vmnog/domino-agents)](https://skills.sh/vmnog/domino-agents)
+
 **One chat runs your project. You answer questions and watch videos; AI sessions do the rest.**
 
 ## Who it's for, and what it fixes
