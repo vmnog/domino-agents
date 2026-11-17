@@ -1,0 +1,14 @@
+{
+  "name": "domino-agents",
+  "owner": {
+    "name": "Victor Nogueira"
+  },
+  "description": "The domino-agents Coordinator loop for Claude Code: one chat plans, grills and reviews; one session per ticket builds.",
+  "plugins": [
+    {
+      "name": "domino-agents",
+      "source": "./",
+      "description": "The Coordinator loop: MVP check, grill, design gate, one session per ticket, video review, and a domino of merges."
+    }
+  ]
+}

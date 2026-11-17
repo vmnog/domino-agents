@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__ccd_session__start_session|Agent|Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/domino-memory-guard.sh",
+            "timeout": 10,
+            "statusMessage": "Checking memory before starting a session"
+          }
+        ]
+      }
+    ]
+  }
+}

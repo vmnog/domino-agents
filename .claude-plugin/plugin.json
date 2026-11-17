@@ -1,0 +1,24 @@
+{
+  "name": "domino-agents",
+  "version": "0.1.0",
+  "description": "One Coordinator chat runs a project through parallel AI sessions: an MVP check and a short grill per ticket, a design gate, one builder or designer session per ticket in its own worktree, a video review before every merge, and a domino where each merge starts the tickets it unblocks.",
+  "author": {
+    "name": "Victor Nogueira",
+    "url": "https://github.com/vmnog"
+  },
+  "homepage": "https://github.com/vmnog/domino-agents",
+  "repository": "https://github.com/vmnog/domino-agents",
+  "license": "MIT",
+  "keywords": [
+    "coordinator",
+    "worktrees",
+    "linked-sessions",
+    "tickets",
+    "tdd",
+    "mvp"
+  ],
+  "agents": [
+    "./skills/domino-agents/agents/domino-builder.md",
+    "./skills/domino-agents/agents/domino-designer.md"
+  ]
+}
