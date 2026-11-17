@@ -104,9 +104,11 @@ plain files, no GitHub remote, and no screens. The dry run used exactly this.
    about three short rounds of questions: pick "no code host" when it asks about the remote.
 
    ```text
-   /mattpocock-skills:setup-matt-pocock-skills
+   /setup-matt-pocock-skills
    /domino-agents:domino-agents
    ```
+
+   These go in Claude Code's chat box, not a terminal, and without a leading `!`.
 
 4. Say "take the first ticket". You get its MVP check and a grill round; answer it, and a builder
    starts in the background. Its evidence comes back to you for an OK.
@@ -157,12 +159,18 @@ API prices. A day of five tickets in parallel costs several times that. The opti
 
    ```text
    /plugin install mattpocock-skills@claude-plugins-official
-   /mattpocock-skills:setup-matt-pocock-skills
+   /setup-matt-pocock-skills
    ```
 
-   Its setup asks where your tickets live and writes `docs/agents/issue-tracker.md`. With no
-   tracker yet, pick local markdown: tickets become files in the repository. domino-agents reads
-   that answer and never asks again.
+   Type both into Claude Code's chat box. They are not terminal commands: with a leading `!` or in
+   a shell, you get "no such file or directory". Only you can run the setup; no agent or skill may
+   start it, so domino-agents waits for you here.
+
+   Its setup asks where your tickets live: GitHub, GitLab, local markdown, or Other, which is how
+   Linear and Jira work. It writes `docs/agents/issue-tracker.md` and `docs/agents/domain.md` (plus
+   `triage-labels.md` when the `triage` skill is installed) and an `## Agent skills` block in
+   `CLAUDE.md` or `AGENTS.md`. With no tracker yet, pick local markdown: tickets become files in
+   the repository. Run it once per repository; run it again only to switch trackers.
 
 3. **The design skills** (optional, for an app with screens). In a terminal, in the project:
 
@@ -302,11 +310,11 @@ block.
 
 | Skill | Used by | Without it |
 |---|---|---|
-| `mattpocock-skills:setup-matt-pocock-skills` | The setup reads the tracker answer it writes | Required: the setup stops |
+| `/setup-matt-pocock-skills` (you type it) | The setup reads the tracker answer it writes | Required: the setup stops |
 | `mattpocock-skills:grilling` | Grill sessions | The grill follows the rules in GRILL.md alone |
 | `mattpocock-skills:tdd`, `codebase-design` | Builders | Builders write each test first by the role file's short rule |
 | `/code-review` (built in) or `mattpocock-skills:code-review` | The Coordinator, before you see the evidence | Use the one you have; one is always built in |
-| `/mattpocock-skills:to-tickets`, `/mattpocock-skills:wait-what` | You type them: cut a feature into tickets; ask for a re-pitch | The Coordinator cuts tickets itself; ask "say it simpler" |
+| `/to-tickets`, `/wait-what` | You type them: cut a feature into tickets; ask for a re-pitch | The Coordinator cuts tickets itself; ask "say it simpler" |
 | The design skills (`better-ui`, `better-layout`, `transitions-dev`…) and a `prototype` skill | Designers, and builders on visible changes | Designers work from your project's own design rules |
 | A design MCP (Paper, Figma, Pencil) | Designers, the design gate | Boards are code variants and screenshots |
 

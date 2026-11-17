@@ -99,7 +99,7 @@ Linear, GitHub Issues, Jira and local files are in [TRACKERS.md](TRACKERS.md).
   data shape or picked boards this one needs first, or whose files it touches. Nothing else is a
   blocker: "we'd rather do it later" is milestone order, not a link. A ticket that needs nothing
   first says `Blocked by: none` in its MVP check. Cut a feature into thin end-to-end slices, each
-  naming what blocks it; the approver can run `/mattpocock-skills:to-tickets` for that.
+  naming what blocks it; the approver can type `/to-tickets` in the message box for that.
 - **Milestone order is the deadline.** Milestones carry no calendar dates. A ticket outside the
   current milestone, Later included, needs the approver's explicit yes before it is grilled or
   built. Name its milestone when you propose it.
