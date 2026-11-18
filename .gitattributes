@@ -1,0 +1,7 @@
+# Keep LF line endings on checkout everywhere: the memory guard hook runs under bash, and a
+# carriage return breaks it. test/check.test.mjs fails if a hook file ever holds one.
+*.md   text eol=lf
+*.json text eol=lf
+*.sh   text eol=lf
+*.mjs  text eol=lf
+*.yml  text eol=lf

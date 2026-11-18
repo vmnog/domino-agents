@@ -17,6 +17,7 @@
   <a href="#quick-start">Quick start</a> &nbsp;&middot;&nbsp;
   <a href="#how-it-works">How it works</a> &nbsp;&middot;&nbsp;
   <a href="#install">Install</a> &nbsp;&middot;&nbsp;
+  <a href="#update">Update</a> &nbsp;&middot;&nbsp;
   <a href="#a-normal-day">A normal day</a> &nbsp;&middot;&nbsp;
   <a href="AGENTS.md">Other agents</a>
 </p>
@@ -197,20 +198,79 @@ API prices. A day of five tickets in parallel costs several times that. The opti
 
 ### Other ways to install
 
-- **The skills CLI**, for any agent it supports (Claude Code, Codex, Cursor and others):
-  `npx skills add vmnog/domino-agents`, and pick both skills. In Claude Code, the builder and
-  designer then run as general-purpose subagents that read their role file first. The command is
-  `/domino-agents`.
-- **Copy the files**, into the project or into `~/.claude/` for every project:
+**Claude Desktop or claude.ai**: Customize, then Plugins, then Add marketplace, and enter
+`vmnog/domino-agents`. Then install `domino-agents` from that marketplace.
 
-  ```bash
-  git clone https://github.com/vmnog/domino-agents ~/src/domino-agents
-  mkdir -p .claude/skills .claude/agents
-  cp -R ~/src/domino-agents/skills/* .claude/skills/
-  cp ~/src/domino-agents/skills/domino-agents/agents/* .claude/agents/
-  ```
+**The skills CLI**, for any agent it supports. In a terminal, in the project, run the line for your
+agent and pick every skill it lists:
 
-  The command is then `/domino-agents`.
+| Agent | Command |
+|---|---|
+| Claude Code | `npx skills add vmnog/domino-agents` |
+| Codex | `npx skills add vmnog/domino-agents -a codex` |
+| Cursor | `npx skills add vmnog/domino-agents -a cursor` |
+| Gemini CLI | `npx skills add vmnog/domino-agents -a gemini-cli` |
+| OpenCode | `npx skills add vmnog/domino-agents -a opencode` |
+| GitHub Copilot | `npx skills add vmnog/domino-agents -a github-copilot` |
+| Windsurf | `npx skills add vmnog/domino-agents -a windsurf` |
+
+- Add `-g` to install for every project instead of only this one.
+- In Claude Code, the builder and designer then run as general-purpose subagents that read their
+  role file first. The command is `/domino-agents`.
+- Agents other than Claude Code: see [AGENTS.md](AGENTS.md).
+
+**Copy the files**, into the project or into `~/.claude/` for every project:
+
+```bash
+git clone https://github.com/vmnog/domino-agents ~/src/domino-agents
+mkdir -p .claude/skills .claude/agents
+cp -R ~/src/domino-agents/skills/* .claude/skills/
+cp ~/src/domino-agents/skills/domino-agents/agents/* .claude/agents/
+```
+
+The command is then `/domino-agents`.
+
+### Try a release candidate
+
+A release candidate is a tag like `v0.2.0-rc.1`, listed under the repository's
+[releases](https://github.com/vmnog/domino-agents/releases). Install it by its tag:
+
+```text
+/plugin marketplace add vmnog/domino-agents#v0.2.0-rc.1
+```
+
+```bash
+npx skills add "vmnog/domino-agents#v0.2.0-rc.1"
+```
+
+## Update
+
+Each [release](https://github.com/vmnog/domino-agents/releases) says what changed, and what to do
+when something was renamed or removed. Then:
+
+| Installed with | Update with |
+|---|---|
+| Claude Code plugin, in a terminal | `claude plugin marketplace update domino-agents`, then `claude plugin update domino-agents@domino-agents` |
+| Claude Code plugin, in its chat box | `/plugin`, then Marketplaces, `domino-agents`, Update |
+| Claude Desktop or claude.ai | Customize, then Plugins: update the marketplace, then the plugin |
+| The skills CLI | `npx skills update` |
+| Copied files | `git -C ~/src/domino-agents pull`, then copy them again |
+
+Restart Claude Code after a plugin update. Your config, `docs/agents/domino-agents.md`, is yours:
+an update never touches it, so add any new field a release names by hand.
+
+## Uninstall
+
+| Installed with | Remove with |
+|---|---|
+| Claude Code plugin, in a terminal | `claude plugin uninstall domino-agents@domino-agents`, then `claude plugin marketplace remove domino-agents` |
+| Claude Code plugin, in its chat box | `/plugin`, then Installed, `domino-agents`, Uninstall |
+| Claude Desktop or claude.ai | Customize, then Plugins: remove the plugin, then the marketplace |
+| The skills CLI | `npx skills remove domino-agents` (add `-g` if you installed with it) |
+| Copied files | Delete them from `.claude/skills/` and `.claude/agents/` |
+
+The memory guard, when installed, is a separate file: delete `~/.claude/hooks/domino-memory-guard.sh`
+and its block in `~/.claude/settings.json`. Your project keeps its config and tracker changes.
 
 ## First run
 
@@ -359,7 +419,30 @@ domino-agents/
 │   │                      agents/ (the builder and designer roles sessions play),
 │   │                      hooks/ (the optional memory guard)
 │   └── mvp-challenge/     the MVP check and its devil's-advocate prompt
-├── assets/               hero.webp, the animation at the top of this README
+├── assets/                hero.webp, the animation at the top of this README
+├── scripts/check.mjs      the repository's checks (no dependencies)
+├── test/                  tests for each check, run with node --test
+├── .github/workflows/     CI: runs the checks and tests on every pull request
 ├── AGENTS.md              for agents other than Claude Code
+├── RELEASING.md           how a version is cut, tagged and announced
 └── LICENSE                MIT
 ```
+
+## Contributing
+
+Every skill here is plain markdown; edit it like any document. Before you open a pull request, run
+the checks (Node 20 or newer, nothing to install):
+
+```bash
+npm run check
+```
+
+```bash
+npm test
+```
+
+`npm run check` fails on a skill whose frontmatter is not exactly `name` and `description`, a role
+file without a name or description, a relative link that leads nowhere, a `Section → Field`
+reference (such as `Gate → Check`) that `config-template.md` does not have, and a version badge
+that differs from `plugin.json`. CI runs both on every pull request. Releases follow
+[RELEASING.md](RELEASING.md).
