@@ -12,7 +12,8 @@ It builds nothing and changes no repository file.
    settled or built part of it since the brief was written. `gh pr list --search "<ticket-id>"
    --state all` (no code host: RUNTIMES.md → *No code host*): if a branch already built it, stop
    and report.
-3. **The MVP check.** Run the `mvp-challenge` skill on the ticket. When the verdict is *defer* or
+3. **The MVP check.** Follow [MVP.md](MVP.md), next to this file, on the ticket (the full size
+   dispatches the devil's advocate in [ADVOCATE.md](ADVOCATE.md)). When the verdict is *defer* or
    *cut*, post the check, report it, and stop: the ticket is not grilled until the approver
    overrides it. *Build rung N* is the scope the grill works inside.
 4. **Find the prior art.** Grep the real routes, screens, migrations and decision records for the
@@ -25,6 +26,10 @@ It builds nothing and changes no repository file.
    with less than the old app is a regression people feel.
 
 ## The grill
+
+**The Design foundations ticket** is grilled with FOUNDATIONS.md → *Read first* and *The brief
+interview*, next to this file, instead of a free-form grill. Its decisions comment holds the
+brief's answers.
 
 Load the `mattpocock-skills:grilling` skill and run it on the ticket, against the code and the
 docs. Without that skill, interview the approver one decision at a time with the rules below. The

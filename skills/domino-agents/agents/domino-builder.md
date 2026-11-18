@@ -51,6 +51,12 @@ missing, stop and report the question with numbered options: the Coordinator rel
   not exist yet is still drawn, and shows a "not built yet" alert when tapped: a screen with rows
   left out "doesn't look like the design at all". Round the board's sizes to the nearest token,
   and add a token only when the nearest one looks visibly different.
+- **Every colour, size and icon comes from the foundations** (Design → Tokens file, Design → Icon
+  set). No loose hex or pixel value in a screen, and no token overridden in a page's own styles.
+  A new token is named for its role and drawn on the foundations page in the same ticket.
+- **The Design foundations ticket** follows the domino-agents skill's FOUNDATIONS.md → *Into the
+  code*: the brief, the tokens, fonts, icon set, brand assets, primitives and a specimen screen,
+  and the config fields that said `set by` it.
 - Run the type check and the single test file often; the full gate once at the end.
 - When done, run a code-review skill (`/code-review`, or `mattpocock-skills:code-review`) against
   `origin/<integration>` and fix what it finds.

@@ -11,7 +11,7 @@ The names are the config's (Design section). A page set to none is skipped.
 | Page | Holds | A board arrives when | A board leaves when |
 |---|---|---|---|
 | Flow pages | The board of record: every screen and state the approver has OK'd as drawn, one page per flow, boards in labelled rows, named as Design → Board names says | The approver OKs it as drawn on `<explorations>` (or in a builder's evidence), and it moves here | Its screen is retired: it moves to the archive page |
-| Foundations page | The design system as drawn: colour, type, radius, elevation, primitives, icons | A token or a primitive is added in code | Its token or primitive is removed |
+| Foundations page | The design system as drawn: colour, type, spacing, radius, elevation, motion, interaction rules, primitives, brand assets, icons. Defined once, first (FOUNDATIONS.md) | The foundations ticket draws it; later, a token or a primitive is added | Its token or primitive is removed |
 | Proposed page | Screens nobody has decided to build, each named `… — PROPOSED` | An idea is worth keeping in sight | Its screen ships or is cut: delete it, the flow page draws what shipped |
 | `<explorations>` | **Every board the approver has not yet OK'd as drawn**: options to pick from, and also a single new board whose layout a grill chose in words. One labelled row per decision | A designer or a builder draws a new board | The approver OKs it: the winners move to the flow page and the rest of the row is deleted |
 | Archive page | Boards no longer in use | A screen is retired | |
@@ -26,6 +26,15 @@ that ships as decided).
 
 ## Exploring
 
+**Explorations start from the foundations** ([FOUNDATIONS.md](FOUNDATIONS.md)). With no brief or no
+foundations yet, the foundations ticket comes first and nothing else is explored.
+
+- **Options differ in design, not in brand.** Layout, hierarchy, density and flow are what one
+  option tries and another does not. A colour, a theme or a font never is: those were decided once
+  on the foundations page.
+- Only the foundations' tokens, primitives and icon set appear on a board. A value the foundations
+  lack becomes a token or a primitive variant first, drawn on the foundations page and named for
+  its role, then used. Never a one-off value on one board.
 - One designer session per decision, and one row per session, labelled
   `Row — <what is being decided> (<ticket-id>)`. A session touches its own row only; other sessions
   work on the same page.

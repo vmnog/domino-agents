@@ -51,18 +51,19 @@ For each ticket, the Coordinator:
 
 | Step | What happens |
 |---|---|
-| **1. MVP check** | Checks the ticket is worth building now, and finds the cheapest version. |
+| **1. MVP check** | Checks the ticket is worth building now, finds the cheapest version, and sends a devil's advocate that has not seen the chat to attack it. |
 | **2. Grill** | Asks you short questions with numbered options, until a builder has nothing left to guess. |
-| **3. Design gate** | Gets the screens drawn first, when the ticket changes what people see. |
+| **3. Design gate** | Gets the screens drawn first, when the ticket changes what people see. A project with no design system first gets its foundations: a brief, tokens, type, brand assets and the first components, so every later exploration looks like the same product. |
 | **4. Build** | Starts one **builder** session in its own git worktree. It builds test-first and records a video of itself using the app. |
 | **5. Review** | Reviews the code, shows you the video, and merges into `staging` (never `main`) on your OK. |
 | **6. Domino** | Starts every ticket that merge unblocked. |
 
 ```text
 idea or ticket
-  → MVP check ─── defer / cut ──→ waits for your override
+  → MVP check + devil's advocate ─── defer / cut ──→ waits for your override
   → grill (one per ticket, all at once) ──→ decisions written on the ticket
-  → design gate ─── no drawn screens ──→ designer session ──→ you pick
+  → design gate ─── no design system yet ──→ foundations ticket first (brief, tokens, brand)
+               └── no drawn screens ──→ designer session ──→ you pick
   → builder session (own worktree, test-first, video)
   → code review → you watch the video → merge into staging
   → domino: the tickets it unblocked start building
@@ -202,7 +203,7 @@ API prices. A day of five tickets in parallel costs several times that. The opti
 `vmnog/domino-agents`. Then install `domino-agents` from that marketplace.
 
 **The skills CLI**, for any agent it supports. In a terminal, in the project, run the line for your
-agent and pick every skill it lists:
+agent:
 
 | Agent | Command |
 |---|---|
@@ -299,6 +300,11 @@ Then say "what's next", "take ABC-12", or describe an idea.
 - adds a pointer to that config in `CLAUDE.md`;
 - adds a merged-but-not-released status and a "Later" milestone to the tracker, and for a project
   with nothing built yet, a first ticket that sets up the stack and the tests;
+- for a project with screens and no design system, a *Design foundations* ticket that every visible
+  ticket waits for. Its grill asks about the product, voice, mood, brand, references and
+  constraints; a designer draws the tokens, type, brand assets and first components; a builder puts
+  them in code. With a design system already in code, it draws that one instead of inventing a new
+  one;
 - adds the evidence folder to `.gitignore` (or `.git/info/exclude`);
 - creates the integration branch when there is none. Then the setup files get one commit on `main`
   first, and `staging` is cut from it: the only commit `main` gets outside a release;
@@ -414,11 +420,12 @@ block.
 domino-agents/
 ├── .claude-plugin/        plugin.json and marketplace.json (this repo is its own marketplace)
 ├── skills/
-│   ├── domino-agents/     the Coordinator: SKILL.md, SETUP, STATUS, FEATURE, GRILL, DESIGN,
-│   │                      RELEASE, TRACKERS, RUNTIMES, config-template.md,
-│   │                      agents/ (the builder and designer roles sessions play),
-│   │                      hooks/ (the optional memory guard)
-│   └── mvp-challenge/     the MVP check and its devil's-advocate prompt
+│   └── domino-agents/     the Coordinator: SKILL.md, SETUP, STATUS, FEATURE,
+│                          MVP (the MVP check) and ADVOCATE (its devil's advocate), GRILL,
+│                          FOUNDATIONS (the design brief and system, before any exploration),
+│                          DESIGN, RELEASE, TRACKERS, RUNTIMES, config-template.md,
+│                          agents/ (the builder and designer roles sessions play),
+│                          hooks/ (the optional memory guard)
 ├── assets/                hero.webp, the animation at the top of this README
 ├── scripts/check.mjs      the repository's checks (no dependencies)
 ├── test/                  tests for each check, run with node --test

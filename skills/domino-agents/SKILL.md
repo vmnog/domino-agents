@@ -1,6 +1,6 @@
 ---
 name: domino-agents
-description: The Coordinator's loop for a project built by parallel AI sessions — say where the project stands, turn an idea or a ticket into settled work (MVP check, grill, design gate), start one session per ticket as a builder or designer, keep the domino going (blocked-by links; each merge starts the tickets it unblocks), review and merge into the integration branch, archive, and release. Use when the user asks where the project stands or what is next, brings an idea or feedback, asks to run, dispatch or take tickets, or asks for a release.
+description: The Coordinator's loop for a project built by parallel AI sessions — say where the project stands, turn an idea or a ticket into settled work (MVP check with a devil's-advocate pass, grill, design foundations, design gate), start one session per ticket as a builder or designer, keep the domino going (blocked-by links; each merge starts the tickets it unblocks), review and merge into the integration branch, archive, and release. Use when the user asks where the project stands or what is next, brings an idea or feedback, picks, adds, drops or reorders a ticket, asks "should we build X", asks to run, dispatch or take tickets, or asks for a release.
 ---
 
 # domino-agents
@@ -35,7 +35,9 @@ Linear, GitHub Issues, Jira and local files are in [TRACKERS.md](TRACKERS.md).
 |---|---|
 | The approver asks where the project stands or what is next; the first turn of a day; before a release | [STATUS.md](STATUS.md) |
 | Work starts from an idea, feedback or a brainstorm, not from a settled ticket | [FEATURE.md](FEATURE.md) |
+| A ticket is MVP-checked, or the approver adds, drops, reorders or reverses something | [MVP.md](MVP.md), and its devil's advocate [ADVOCATE.md](ADVOCATE.md) |
 | A ticket is grilled, here or in a grill session | [GRILL.md](GRILL.md) |
+| The project has screens but no design brief or foundations yet, or they change | [FOUNDATIONS.md](FOUNDATIONS.md) |
 | A ticket draws or changes anything a person sees | [DESIGN.md](DESIGN.md) |
 | A pull request merged into `<integration>`, or the approver asks to release | [RELEASE.md](RELEASE.md) |
 
@@ -70,7 +72,7 @@ Linear, GitHub Issues, Jira and local files are in [TRACKERS.md](TRACKERS.md).
   closing line; one concrete next action at the end. Working memory is small, and starting is the
   hardest step.
 - **Challenge by default.** When the approver adds, drops, reorders or reverses something, run
-  `mvp-challenge` before you act: the quick size for a fix, the full size for anything new or any
+  the MVP check ([MVP.md](MVP.md)) before you act: the quick size for a fix, the full size for anything new or any
   reversal. When the evidence points away from their call, say so in the first line. Disagree out
   loud: agreement that was never tested is how off-milestone work rides along.
 - **Every question has numbered options**, the recommended one first and marked (Recommended), and
@@ -129,9 +131,9 @@ blockers build, so it is settled the moment its last blocker merges. Only its bu
 
 ## 2. The MVP check
 
-Run the `mvp-challenge` skill on each ticket before grilling it. **Quick** (four lines) for a fix to
-something already there; **full** (with the cold attack) for anything that adds a screen, a table,
-a prompt or a glossary word, or reverses a decision. Either way the ticket gets a comment headed
+Run [MVP.md](MVP.md) on each ticket before grilling it. **Quick** (four lines) for a fix to
+something already there; **full** (with the devil's advocate, [ADVOCATE.md](ADVOCATE.md)) for
+anything that adds a screen, a table, a prompt or a glossary word, or reverses a decision. Either way the ticket gets a comment headed
 `MVP check (<date>)`, and a builder refuses a ticket without one. A ticket whose verdict is
 *defer* or *cut* is not grilled until the approver overrides it. Run it again whenever the plan
 moves:
@@ -167,6 +169,11 @@ review of the evidence → their test on staging**. A builder that meets an undr
 layout, and that layout then gets redesigned and rebuilt. Before a builder touches anything a
 person sees:
 
+0. **Foundations first.** When the project has screens but no design brief (Design → Brief) or no
+   foundations (Design → Foundations page and Tokens file), create the *Design foundations* ticket
+   now, first in the current milestone, and block this ticket by it ([FOUNDATIONS.md](FOUNDATIONS.md)).
+   No designer explores a screen before it merges: options drawn without foundations each invent
+   their own colours, type and radius.
 1. **List every visible state the ticket creates or changes**, the happy path and the rest: empty,
    loading, failed, the first-time person, ties and edge counts, long text, and each wording.
 2. **Find each one's board** on its flow page in the design file (DESIGN.md). A state with no board

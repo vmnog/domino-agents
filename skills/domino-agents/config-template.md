@@ -102,8 +102,12 @@ What the approver reviews before a merge, instead of reading code.
 - Archive page: <fill: e.g. 99 · Archive>
 - Board width: <fill: e.g. 390>
 - Board names: <fill: e.g. Screen / state — option A>
-- Tokens file: <fill: the code's token file, or none>
+- Brief: <fill: the design brief (product, voice, mood, brand, references, constraints), e.g. DESIGN.md, or "set by <foundations ticket>", or none for a project with no screens>
+- Tokens file: <fill: the code's token file, or "set by <foundations ticket>", or none>
+- Brand assets: <fill: the folder with the logo variants, fonts and app icons, e.g. assets/brand/, or "set by <foundations ticket>", or none>
+- Icon set: <fill: the one icon library every board and screen uses, e.g. lucide-react, or "set by <foundations ticket>", or none>
 - Components from: <fill: e.g. the shadcn core registry only, or none>
+  <!-- A project with screens and no brief or foundations gets a "Design foundations" ticket first (FOUNDATIONS.md). Every visible ticket is blocked by it. -->
 
 ## Keys and limits
 

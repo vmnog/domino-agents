@@ -9,7 +9,7 @@
     {
       "name": "domino-agents",
       "source": "./",
-      "description": "The Coordinator loop: MVP check, grill, design gate, one session per ticket, video review, and a domino of merges.",
+      "description": "The Coordinator loop: MVP check with a devil's advocate, grill, design foundations and a design gate, one session per ticket, video review, and a domino of merges.",
       "category": "productivity"
     }
   ]

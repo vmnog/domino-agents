@@ -1,16 +1,16 @@
----
-name: mvp-challenge
-description: Challenge a priority call before any work starts — test it against the current milestone's done line, climb the cheapest-path ladder to the least work that gives the milestone's people the same value, and run a cold devil's-advocate pass. Use when the user picks, adds, drops or reorders a ticket, reverses a decision, asks "should we build X", when you are about to propose new scope, or when the domino-agents Coordinator takes a ticket.
----
+# The MVP check and the devil's advocate
 
-# mvp-challenge
+This is how the loop challenges a priority call before any work starts. It runs on every ticket
+before its grill (SKILL.md §2), and whenever the approver picks, adds, drops, reorders or reverses
+something, asks "should we build X", or a session proposes new scope. It is part of the loop, not
+a separate step to opt into: no ticket reaches a builder without it.
 
 The approver asked for a second opinion, not a yes. Agreement is earned by evidence. When the
 evidence points away from their call, say so in the first line of the answer.
 
 One run per call. A call is one ticket, or one change of plan ("move the logs to Later"). The
-project's config is `docs/agents/domino-agents.md`; the tracker calls are in the domino-agents
-skill's TRACKERS.md.
+project's config is `docs/agents/domino-agents.md`; the tracker calls are in
+[TRACKERS.md](TRACKERS.md), next to this file.
 
 ## The two sizes
 
@@ -75,11 +75,11 @@ Done when one rung is named as the cheapest that holds the value. A rung that gi
 does not count, however cheap it is. When Project → Rebuild of names an old app, *skip* and
 *defer* are off the table for a screen that app already ships: a missing read gets its own ticket.
 
-## 3. The cold attack (full size only)
+## 3. The devil's advocate (full size only)
 
 Dispatch one general-purpose subagent in the foreground. Give it the prompt in
-[ADVOCATE.md](ADVOCATE.md), filled in with the milestone text, the call, the value sentence and the
-ladder result. It has not seen this conversation, so it cannot inherit your agreement.
+[ADVOCATE.md](ADVOCATE.md), next to this file, filled in with the milestone text, the call, the
+value sentence and the ladder result. It has not seen this conversation, so it cannot inherit your agreement.
 
 Done when it returns its kill shot, its three attacks, its cheaper alternative and its probability.
 Answer each attack in one line, with evidence or a concession.
