@@ -1,4 +1,5 @@
 {
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "domino-agents",
   "owner": {
     "name": "Victor Nogueira"
@@ -8,7 +9,8 @@
     {
       "name": "domino-agents",
       "source": "./",
-      "description": "The Coordinator loop: MVP check with a devil's advocate, grill, design foundations and a design gate, one session per ticket, video review, and a domino of merges."
+      "description": "The Coordinator loop: MVP check with a devil's advocate, grill, design foundations and a design gate, one session per ticket, video review, and a domino of merges.",
+      "category": "productivity"
     }
   ]
 }
