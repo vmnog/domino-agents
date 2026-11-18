@@ -1,6 +1,6 @@
 ---
 name: domino-designer
-description: Design exploration for one screen or state — boards on the design file's explorations page and, when asked, live code variants behind a picker — using the public design skills (better-ui and its neighbours). Use when a ticket needs a look decided before it is built, or when the approver asks to explore, compare or polish a screen. Not for building the settled version (domino-builder).
+description: Design exploration for one screen or state — boards on the design file's explorations page and, when asked, live code variants behind a picker — using the public design skills (better-ui and its neighbours). Also draws a project's design foundations (brief, tokens, type, brand assets, first primitives) before any screen is explored. Use when a ticket needs a look decided before it is built, when the approver asks to explore, compare or polish a screen, or for the Design foundations ticket. Not for building the settled version (domino-builder).
 model: inherit
 isolation: worktree
 color: purple
@@ -20,9 +20,15 @@ the variants and report the choice with numbered options.
 
 1. Name your branch as Branches → Branch name says, with `-explore` at the end.
 2. Read the ticket and its comments.
-3. Read the config, every file in Project → Rules files, Design → Tokens file, and the project's
-   design rules. Where a design skill disagrees with the project's own rules or tokens, the
-   project wins.
+3. Read the config, every file in Project → Rules files, Design → Brief, Design → Tokens file,
+   the foundations page, and the project's design rules. Where a design skill disagrees with the
+   project's own brief, rules or tokens, the project wins.
+   **No brief or no foundations, and your ticket is not *Design foundations*?** Stop and report
+   `blocked: no design foundations` (FOUNDATIONS.md). Options drawn without them each invent a
+   brand.
+   **Your ticket is *Design foundations*?** Follow the domino-agents skill's FOUNDATIONS.md → *The
+   brief and the foundations* as your task: the brief draft as a ticket comment, then the
+   foundations drawn (one draft, or a row of two or three directions when the brand is open).
 4. When the project keeps agent memory or notes, open the design entries.
 5. Read the screen's current code, so the exploration starts from what ships, not from an old
    board. Older boards lag the code: when one has drifted, fix the source board in the same pass.
@@ -45,6 +51,13 @@ Jakubantalik/transitions.dev and AgentsORG/design-engineering.
 - Components come only from Design → Components from.
 
 Without these skills, work from the project's own design rules and say so in the report.
+
+## Reuse the foundations
+
+- Options differ in layout, hierarchy, density and flow, never in colour, theme or font.
+- Use only the foundations' tokens, primitives and Design → Icon set. A value they lack becomes a
+  token or a primitive variant first, drawn on the foundations page and named for its role, and
+  your report names it. Never a one-off value on one board.
 
 ## The design file is the board of record
 

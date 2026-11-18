@@ -19,6 +19,10 @@ Read what exists; ask only what looking cannot answer.
 - What the mattpocock-skills setup writes (§2): `docs/agents/issue-tracker.md`,
   `docs/agents/domain.md`, `docs/agents/triage-labels.md` when the `triage` skill is installed, and
   an `## Agent skills` block in `CLAUDE.md` or `AGENTS.md`.
+- The design system, for a project with screens: a design brief (`DESIGN.md`), a token file or
+  theme (`tokens.css`, `theme.ts`, `tailwind.config.*`, CSS variables), a component library, a
+  font setup, an icon package, brand folders (logos, app icons), and the design file's foundations
+  page. FOUNDATIONS.md → *When it runs* says what each finding means.
 - This session's tools and skills: `start_session` present means the runtime is `claude-desktop`;
   the `mattpocock-skills` skills and the design skills (`better-ui`); a tracker MCP (Linear, Jira); a design MCP
   (Paper, Figma, Pencil); `gh auth status`.
@@ -95,7 +99,9 @@ value for certain, show it as option 1 ("keep `staging`"). Each round ends on it
   widths and entry screen; how a session checks a phone by itself (a simulator, when this computer
   has one); how a session makes a new test user, and the addresses that may get real messages; how
   a command gets a secret.
-- **U, the rest**: the design tool and its explorations page; how the approver reads (plain words
+- **U, the rest**: the design tool and its explorations page; for a project with screens, what
+  step 1 found of the design system, and whether the foundations ticket draws new foundations or
+  imports the ones in code (FOUNDATIONS.md); how the approver reads (plain words
   on or off, the ADHD profile on or off, notes); what the agent may do on hosting without asking;
   what holds a release (early or live users); whether to install the memory guard.
 
@@ -111,6 +117,11 @@ with screens, maybe no commit). Recommend no stack and no tool: that is the firs
 decision, made by its MVP check and grill. Each field it decides (the Gate fields, Ports, Evidence →
 Recorder, Design → Tokens file, as they apply) says `set by <ticket id>`, and step 4 creates that
 ticket.
+
+**Screens, but no design system** (no brief, no foundations page, or no token file). Recommend no
+brand and no tokens yet: the foundations ticket decides them with the approver (FOUNDATIONS.md).
+Design → Brief, Tokens file, Brand assets and Icon set say `set by <foundations ticket id>`, as
+they apply.
 
 ## 4. Write
 
@@ -135,6 +146,9 @@ ticket.
    labels. When a field says `set by`, also create that ticket, first in milestone 1 and blocking every other ticket there:
    *Set up <what is missing: the stack, the tests, the evidence recorder>*. Its description lists
    the config fields that say `set by` it, and its builder fills them in the same change.
+   When a Design field says `set by`, also create *Design foundations* (FOUNDATIONS.md) in
+   milestone 1: blocked by the setup ticket when there is one, and blocking every ticket that
+   changes what a person sees. Its description says whether it creates or imports.
 4. Keep the evidence out of git: add Evidence → Folder to `.git/info/exclude` (local) or
    `.gitignore` (shared), as the approver picks. Create the Reports folder when the runtime needs
    one.

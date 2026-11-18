@@ -8,7 +8,7 @@ builders and designers do the rest.
 1. **A brainstorm ticket.** Search the tracker first and reuse a ticket that already covers the
    idea. Otherwise create `Brainstorm: <the idea in a person's words>`, in the milestone whose done
    line it serves, else the Later milestone.
-2. **The MVP check, on the idea.** Run `mvp-challenge` before any grilling, so nothing is designed
+2. **The MVP check, on the idea.** Run [MVP.md](MVP.md) before any grilling, so nothing is designed
    that should have been skipped, done by hand or reused. *Defer* or *cut* ends here until the
    approver overrides it. *Build rung N* is the scope the grill works inside.
 3. **The grill** (GRILL.md). Write each answer into a decision record the moment it is given
