@@ -9,7 +9,7 @@
 <p>
   <a href="https://skills.sh/vmnog/domino-agents"><img src="https://skills.sh/b/vmnog/domino-agents" alt="skills.sh"></a>
   <a href="https://docs.claude.com/en/docs/claude-code/overview"><img src="https://img.shields.io/badge/Claude%20Code-plugin-D97757" alt="Claude Code plugin"></a>
-  <a href=".claude-plugin/plugin.json"><img src="https://img.shields.io/badge/version-0.1.0-111" alt="Version 0.1.0"></a>
+  <a href=".claude-plugin/plugin.json"><img src="https://img.shields.io/badge/version-0.2.0-111" alt="Version 0.2.0"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-111" alt="MIT license"></a>
 </p>
 
