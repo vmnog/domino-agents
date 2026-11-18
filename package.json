@@ -1,0 +1,13 @@
+{
+  "name": "domino-agents-repo",
+  "private": true,
+  "type": "module",
+  "description": "Checks for the domino-agents skills and plugin manifests. Not a published package.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "check": "node scripts/check.mjs",
+    "test": "node --test"
+  }
+}
