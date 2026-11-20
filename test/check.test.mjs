@@ -61,19 +61,24 @@ describe('the real repository', () => {
     assert.deepEqual(checkAll(ROOT), []);
   });
 
-  it('has no carriage return in any hook file (the memory guard runs under bash)', () => {
-    for (const skill of readdirSync(join(ROOT, 'skills'))) {
-      const hooks = join(ROOT, 'skills', skill, 'hooks');
-      let files = [];
-      try {
-        files = readdirSync(hooks);
-      } catch {
-        continue;
-      }
-      for (const file of files) {
-        assert.ok(!readFileSync(join(hooks, file), 'utf8').includes('\r'), `${skill}/hooks/${file} has \\r`);
-      }
+  it('has no carriage return in the memory guard (it runs under bash)', () => {
+    const guard = join(ROOT, 'extras', 'memory-guard');
+    for (const file of readdirSync(guard)) {
+      assert.ok(!readFileSync(join(guard, file), 'utf8').includes('\r'), `extras/memory-guard/${file} has \\r`);
     }
+  });
+
+  it('ships no executable script inside a skill folder', () => {
+    const scripts = [];
+    const walk = (dir) => {
+      for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        const path = join(dir, entry.name);
+        if (entry.isDirectory()) walk(path);
+        else if (/\.(sh|bash|zsh|py|js|mjs|cjs|ts)$/.test(entry.name)) scripts.push(path);
+      }
+    };
+    walk(join(ROOT, 'skills'));
+    assert.deepEqual(scripts, []);
   });
 });
 
