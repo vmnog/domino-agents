@@ -35,10 +35,14 @@ Show the approver one table: each prerequisite, present or missing, and what is 
 | Prerequisite | Needed for | When it is missing |
 |---|---|---|
 | `mattpocock-skills` installed, and its setup run in this repository (every file in *The mattpocock-skills setup* below exists) | The tracker answer, `grilling`, `tdd`, `codebase-design`, `code-review`, `to-tickets` | **Stop here.** Hand the setup to the approver as *The mattpocock-skills setup* below says, and wait. Every later step reads the tracker answer. |
-| The design skills installed (`better-ui` at least), from four public sets: `npx skills add jakubkrehel/skills`, `emilkowalski/skills`, `Jakubantalik/transitions.dev`, `AgentsORG/design-engineering` | Designers and builders on anything a person sees | A project with a UI goes on only with the approver's yes: designers then work from the project's own rules alone. A project with no UI skips it. |
+| The design skills installed (`better-ui` at least). They are third-party skills: the approver reads and installs them (README → *Install*, step 3) | Designers and builders on anything a person sees | A project with a UI goes on only with the approver's yes: designers then work from the project's own rules alone. A project with no UI skips it. |
 | A tracker that answers one read call (list the milestones) | Every step | Stop and fix the connection. |
 | `gh` (or `glab`) logged in, when the repository has a remote | PRs, the duplicate-work check | Stop and ask the approver to log in. With no remote, round S asks about the code host instead. |
 | A design tool's MCP | The design gate's boards | Design → Tool is none: boards are code variants and screenshots (DESIGN.md). |
+
+**Installs are the approver's.** No agent installs a skill, a plugin or a hook, and no agent edits
+`~/.claude/` or another user-wide setting (SKILL.md → *Trust*). For each missing prerequisite,
+point to its README step and wait for the approver's word that it is done.
 
 ### The mattpocock-skills setup
 
@@ -93,7 +97,8 @@ value for certain, show it as option 1 ("keep `staging`"). Each round ends on it
   only watch; the code host, when there is no remote (below); the integration branch (when none
   exists, offer to create `staging` from the production branch, after a yes); the production
   branch; the milestones (use the existing ones, or the approver names the first two plus Later);
-  the merged-not-released status; whether this project rebuilds an older app.
+  the merged-not-released status; whether this project rebuilds an older app; the trusted authors
+  (tracker users besides the approver whose comments count as decisions; recommend none).
 - **T, proof**: the gate commands (list the scripts found, or *Nothing built yet* below); whether
   CI runs the tests; the evidence kind (a project with no screen proves itself with a transcript),
   widths and entry screen; how a session checks a phone by itself (a simulator, when this computer
@@ -152,11 +157,11 @@ they apply.
 4. Keep the evidence out of git: add Evidence → Folder to `.git/info/exclude` (local) or
    `.gitignore` (shared), as the approver picks. Create the Reports folder when the runtime needs
    one.
-5. With a yes on the memory guard (and `jq` installed): copy
-   `<this skill's base directory>/hooks/domino-memory-guard.sh` to `~/.claude/hooks/`, make it
-   executable, and merge `<this skill's base directory>/hooks/settings-snippet.json` into
-   `~/.claude/settings.json`. Test it: `touch ~/.claude/hooks/.domino-memory-guard-test` makes free
-   memory read as 5%, so a session start is refused; then delete that file.
+5. With a yes on the memory guard: the approver installs it by hand (README → *Optional: the
+   memory guard*). It changes `~/.claude/settings.json`, which every Claude Code session on this
+   computer reads, so no agent edits it. Give the approver that README section and go on; until
+   they say it is installed, read free memory before each start (RUNTIMES.md → *Reading free
+   memory*).
 6. Get the setup files into `<integration>`: every builder's worktree starts from that branch, so
    a config that is not there reaches no builder. With the approver's yes:
    - When this setup creates `<integration>`, or the repository has no commit yet, commit the

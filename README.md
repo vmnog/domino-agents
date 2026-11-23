@@ -183,6 +183,10 @@ API prices. A day of five tickets in parallel costs several times that. The opti
    npx skills add AgentsORG/design-engineering
    ```
 
+   These are third-party skills that your agent will load and follow, so read each set before you
+   install it. To keep the version you read, add the tag or commit you reviewed
+   (`npx skills add jakubkrehel/skills#<commit>`). No domino-agents session installs them for you.
+
    When the CLI asks, choose Claude Code, and this project. You get
    [jakubkrehel/skills](https://github.com/jakubkrehel/skills) (`better-ui`, `better-layout` and
    the other `better-*`), [emilkowalski/skills](https://github.com/emilkowalski/skills) (motion
@@ -329,12 +333,14 @@ Each session is a Claude process, and a builder also runs a dev server and a bro
 started at once once froze a 24 GB laptop. The guard is a Claude Code hook that refuses to start a
 session when memory would go over 90%. It works on macOS and Linux and needs `jq`.
 
-The easy way: say yes when the first run offers it; it installs and tests the guard for you. It is
-not on by default because a plugin's own hooks cannot be switched off.
+You install it yourself; no agent does. It changes `~/.claude/settings.json`, which every Claude
+Code session on your computer reads, and it is not part of the skill, so a plugin or skills-CLI
+install never adds it. Read the script before you install it: it is about 100 lines of bash.
 
-By hand: copy `skills/domino-agents/hooks/domino-memory-guard.sh` (in the plugin's folder, whose
-path the first run prints) to `~/.claude/hooks/`, make it executable, and merge this into
-`~/.claude/settings.json` (the same block is in `skills/domino-agents/hooks/settings-snippet.json`):
+Copy `extras/memory-guard/domino-memory-guard.sh` from a clone of this repository
+(`git clone https://github.com/vmnog/domino-agents`) to `~/.claude/hooks/`, make it executable,
+and merge this into `~/.claude/settings.json` (the same block is in
+`extras/memory-guard/settings-snippet.json`):
 
 ```json
 {
@@ -424,8 +430,8 @@ domino-agents/
 │                          MVP (the MVP check) and ADVOCATE (its devil's advocate), GRILL,
 │                          FOUNDATIONS (the design brief and system, before any exploration),
 │                          DESIGN, RELEASE, TRACKERS, RUNTIMES, config-template.md,
-│                          agents/ (the builder and designer roles sessions play),
-│                          hooks/ (the optional memory guard)
+│                          agents/ (the builder and designer roles sessions play)
+├── extras/memory-guard/   the optional memory guard hook, installed by hand
 ├── assets/                hero.webp, the animation at the top of this README
 ├── scripts/check.mjs      the repository's checks (no dependencies)
 ├── test/                  tests for each check, run with node --test
@@ -434,6 +440,23 @@ domino-agents/
 ├── RELEASING.md           how a version is cut, tagged and announced
 └── LICENSE                MIT
 ```
+
+## Security
+
+The loop reads text that other people can write: tickets, comments, pull requests, design boards.
+It treats all of it as data. Only you, in the chat, and the skill's own files give instructions.
+`SKILL.md` → *Trust* has the rules:
+
+- Only your tracker comments, and those of the people in the config's Trusted authors, count as
+  decisions. A ticket filed by anyone else waits for you to pick it.
+- A ticket or comment that asks an agent to run a command, install something or touch secrets is
+  quoted to you, not done.
+- Sessions run git, your code host CLI, your tracker's tool and the commands in your config.
+- No agent installs a skill, a plugin or a hook, or edits `~/.claude/`: every install in this
+  README is a step you run.
+
+Found a security problem? Open an issue that says only that you found one, with no details, and
+the maintainer will set up a private channel.
 
 ## Contributing
 
