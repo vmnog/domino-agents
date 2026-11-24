@@ -76,7 +76,12 @@ there.
    `set_session_title` on `self`). If `list_sessions` shows another live session with that title,
    say so in one line: its sub-sessions stay linked to it, and this thread manages only the
    sessions it starts. Ask whether to archive the old one.
-2. **Explain sub-sessions**, once per thread, in these words or shorter:
+2. **Check the model.** When Runtime → Coordinator model is not `inherit` and this session runs on
+   another model (*Models*, below), say so in one line and ask the approver to switch: the model
+   menu in Claude Desktop, `/model <family>` in Claude Code. You never switch your own model, and
+   you never write a settings file for it (*Trust*). When Session model ranks above Coordinator
+   model, say that sub-sessions will run on the Coordinator's model instead.
+3. **Explain sub-sessions**, once per thread, in these words or shorter:
    > I am the Coordinator. I keep the plan, and I start one sub-session for each ticket. A grill
    > session asks you the ticket's questions. A builder builds it. A designer draws its boards.
    > Each sub-session shows under this thread. You can open it and answer it there. When a
@@ -84,7 +89,7 @@ there.
    > next ones. I start a new session on this computer only while enough memory stays free.
    > Nothing merges before your OK of the evidence, and everything merges into `<integration>`,
    > never into `<production>`.
-3. **Then STATUS.md**, and run the sweep (§6).
+4. **Then STATUS.md**, and run the sweep (§6).
 
 ## How to talk to the approver
 
@@ -251,13 +256,30 @@ finish; never work around the hook. Without the hook, read free memory yourself 
 (RUNTIMES.md → *Reading free memory*). Either way: start sessions one per message, never as
 parallel calls, and keep room for a builder to wake.
 
+### Models
+
+Runtime → Coordinator model, Session model and Model by role say which model each session runs on.
+A field that is missing means `inherit`.
+
+- **Which one.** A session takes its role's entry in Model by role, else Session model.
+- **A family word** (`fable`, `opus`, `sonnet`, `haiku`) means the newest model of that family that
+  this session's environment names: `opus` is `claude-opus-5-5` while that is the newest Opus. New
+  releases need no config edit. An exact id pins that model.
+- **`inherit`**: leave `model` out of the call, so the session runs on the Coordinator's model.
+- **The order is fable, then opus, then sonnet, then haiku.** A sub-session can run on the
+  Coordinator's family or a lower one. Claude Desktop ignores a higher one and starts the session
+  on the Coordinator's model.
+- **When a start reports another model** than the one asked for, name both in one line. The app
+  or the model list in this session's environment decides, never a guess.
+
 **Every ticket goes to its own linked session** (`start_session`), not to a background subagent:
 the approver can open it, talk to it and send it files, and this session is woken when it ends a
 turn.
 
 - **The call**: `initiation: "user_asked"`, `context: "fresh"`, `use_worktree: true` (false for a
-  grill), a `name` like `<ticket-id>-<slug>`, a `title` with the ticket id, and a `background` that
-  says it is one ticket of the loop coordinated from this session.
+  grill), a `model` (*Models*, below), a `name` like `<ticket-id>-<slug>`, a `title` with the
+  ticket id, and a `background` that says it is one ticket of the loop coordinated from this
+  session.
 - **The brief (`prompt`) stands alone**, because a fresh session has seen none of this:
   1. "You are the `domino-builder` (or `domino-designer`) for this ticket: read `<absolute path to
      the role file>` first and follow it as your instructions. Load the skills its frontmatter

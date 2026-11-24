@@ -23,6 +23,7 @@ Read what exists; ask only what looking cannot answer.
   theme (`tokens.css`, `theme.ts`, `tailwind.config.*`, CSS variables), a component library, a
   font setup, an icon package, brand folders (logos, app icons), and the design file's foundations
   page. FOUNDATIONS.md → *When it runs* says what each finding means.
+- This session's model: its family is the recommended Coordinator model.
 - This session's tools and skills: `start_session` present means the runtime is `claude-desktop`;
   the `mattpocock-skills` skills and the design skills (`better-ui`); a tracker MCP (Linear, Jira); a design MCP
   (Paper, Figma, Pencil); `gh auth status`.
@@ -93,7 +94,9 @@ At most three rounds, the `S`, `T` and `U` letters, each question short with num
 the recommended one first (GRILL.md → *The grill*). Recommend what step 1 found: when it found a
 value for certain, show it as option 1 ("keep `staging`"). Each round ends on its answer line.
 
-- **S, the loop**: the runtime; the approver (the one tester and decider) and any partners who
+- **S, the loop**: the runtime; the models (SKILL.md → *Models*): the Coordinator's, recommended
+  as the family this session runs on, and the sub-sessions' default, recommended as the same family
+  or one below it, with a per-role override only when the approver names one; the approver (the one tester and decider) and any partners who
   only watch; the code host, when there is no remote (below); the integration branch (when none
   exists, offer to create `staging` from the production branch, after a yes); the production
   branch; the milestones (use the existing ones, or the approver names the first two plus Later);

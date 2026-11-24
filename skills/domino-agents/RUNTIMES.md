@@ -12,6 +12,7 @@ changes.
 |---|---|---|---|
 | Take the role | `set_session_title` | Say "Coordinator" in the first line | The approver names the chat |
 | Start a builder or designer | `start_session`, `use_worktree: true` | The Agent tool with the role as `subagent_type` (`domino-agents:domino-builder` as a plugin), run in the background; `isolation: worktree` in the role file gives it a worktree. Installed without the plugin (the skills CLI, or copied files): a `general-purpose` subagent with `isolation: worktree`, whose brief starts by reading the role file | The approver opens a worktree and a new chat there (below) |
+| Pick a session's model (SKILL.md → *Models*) | `model` on `start_session`, as an exact id | `model` on the Agent tool, as the family word (`opus`, `sonnet`, `haiku`, `fable`); it overrides `model: inherit` in the role file | The approver picks the model in each new chat |
 | Start a grill | `start_session`, `use_worktree: false` | The Coordinator grills here, following GRILL.md | The Coordinator grills here |
 | A session reports | Its turn ends and this session wakes with the report's first lines; the full report is in Reports folder | The subagent's result arrives as a notification, and it is the full report: a subagent isolated in its worktree cannot write to Reports folder | It writes its report into Reports folder; the approver says "reported" |
 | The sweep's list | `list_sessions` with `linked: true` | The background tasks still running, plus `git worktree list` | The files in Reports folder, plus `git worktree list` |
