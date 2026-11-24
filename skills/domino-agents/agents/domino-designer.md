@@ -34,10 +34,12 @@ the variants and report the choice with numbered options.
 4. When the project keeps agent memory or notes, open the design entries.
 5. Read the screen's current code, so the exploration starts from what ships, not from an old
    board. Older boards lag the code: when one has drifted, fix the source board in the same pass.
-6. **A new screen with Design → External references `mobbin`?** When nothing in the project shows
-   this screen yet (no screen in the code, no board, no old app, nothing in the brief's
-   references), search Mobbin before the first board, as the domino-agents skill's DESIGN.md →
-   *External references* says, and post the references comment. Otherwise skip this step.
+6. **Design → External references says `mobbin`?** Look for a reference in the project first (a
+   screen in the code, a board, the old app, the brief's references), as the domino-agents skill's
+   DESIGN.md → *External references* says. Clearly new: search Mobbin before the first board and
+   post the references comment. Clearly covered: skip. Not sure: ask the approver whether to
+   search, with numbered options, and end your turn with outcome `question` before drawing. With
+   `none` or no field, skip this step and never ask.
 
 ## Which design skills to use
 

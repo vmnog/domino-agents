@@ -55,18 +55,47 @@ foundations yet, the foundations ticket comes first and nothing else is explored
 ## External references
 
 Optional. It runs only when Design → External references says `mobbin`; a missing field means
-none. The approver turns it on at setup, or when an update adds the field (SKILL.md §0).
+none. The approver turns it on at setup, when an update adds the field (SKILL.md §0), or at any
+time by asking.
 
-**When it runs.** A designer searches before its first board only when the screen or feature is new
-to the project. It is new when none of these shows it:
+**Turning it on or off**, when the approver asks ("use Mobbin for design references", "turn
+Mobbin off"), the Coordinator:
+
+1. Checks this session for the `mobbin-ui-research` skill and a Mobbin MCP (its `search_screens`
+   tool).
+2. For each one missing, hands the approver its command from README → *Install*, step 3, and waits
+   for their word that it is done (a new MCP or skill may need a restart). It never runs them
+   (SKILL.md → *Trust*).
+3. Sets Design → External references to `mobbin` (or `none`), adding the line when the config lacks
+   it, and gets the change into `<integration>` the way SETUP.md step 4.6 does, with the approver's
+   yes.
+4. Says in one line what changes: from now on, designers search Mobbin before drawing a screen the
+   project has no reference for, and ask when that is unclear.
+
+**When it runs.** Before its first board, the designer looks for a reference in the project:
 
 - a screen in the code that does the same job;
 - a board on a flow page, the foundations page or the proposed page;
 - the old app named in Project → Rebuild of;
 - the references in Design → Brief.
 
-Any one of them is the reference, and the search is skipped. A new state of a screen that exists
-(an empty state, an error) is not a new screen.
+Then one of three things:
+
+- **Clearly new** (none of these shows anything like it): search Mobbin.
+- **Clearly covered** (one of them does the same job, or the ticket adds a state to a screen that
+  exists, like an empty state or an error): skip the search; that is the reference.
+- **Unclear** (something close exists but does a different job, or only part of the feature has a
+  reference): ask the approver before drawing, one question with numbered options, the
+  recommended one first, and end the turn with outcome `question`:
+
+  ```
+  <Screen> is close to <the nearest reference> but <how it differs>. Search Mobbin first?
+  1. Search Mobbin for <what> (Recommended): options start from how other apps do it.
+  2. Skip: options start from <the nearest reference>.
+  ```
+
+  Recommend searching when the nearest reference does a different job, and skipping when it
+  differs only in content. Never ask when the field is `none`.
 
 **How.** Load the `mobbin-ui-research` skill (with a prefix when a plugin installed it) and follow
 it, with:

@@ -198,8 +198,9 @@ API prices. A day of five tickets in parallel costs several times that. The opti
    **Optional: Mobbin references.** With this on, a designer searches
    [Mobbin](https://mobbin.com) for real apps' screens and flows before it draws a screen or
    feature your project has no reference for yet: nothing in the code, the design file, the old app
-   or the brief shows it. Options still use only your own foundations; the references shape layout
-   and flow. It needs a Mobbin account, the Mobbin MCP and
+   or the brief shows it. When it is not sure whether a screen counts as new, it asks you first.
+   Options still use only your own foundations; the references shape layout and flow. It needs a
+   Mobbin account, the Mobbin MCP and
    [ddruids/mobbin-skill](https://github.com/ddruids/mobbin-skill) (`mobbin-ui-research`). Read the
    skill first, then:
 
@@ -211,8 +212,17 @@ API prices. A day of five tickets in parallel costs several times that. The opti
    npx skills add ddruids/mobbin-skill#<commit>
    ```
 
-   The first run asks whether to use it (Design → External references in the config). A project
-   set up before this step existed is asked the next time the Coordinator starts.
+   The first run asks whether to use it (Design → External references in the config).
+
+   **Already using domino-agents?** Update it (*Update*, below), then either:
+
+   - start the Coordinator as usual: it notices the new config field and asks whether to turn
+     Mobbin on; or
+   - tell it, any time, "use Mobbin for design references".
+
+   Either way it checks for the skill and the MCP, gives you the commands above for whichever is
+   missing, and writes `External references: mobbin` into your config with your yes. "Turn Mobbin
+   off" sets it back to `none`.
 
 4. **The first run.** In a new session in the project, type:
 

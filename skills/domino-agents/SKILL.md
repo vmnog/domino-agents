@@ -1,6 +1,6 @@
 ---
 name: domino-agents
-description: The Coordinator's loop for a project built by parallel AI sessions — say where the project stands, turn an idea or a ticket into settled work (MVP check with a devil's-advocate pass, grill, design foundations, design gate), start one session per ticket as a builder or designer, keep the domino going (blocked-by links; each merge starts the tickets it unblocks), review and merge into the integration branch, archive, and release. Use when the user asks where the project stands or what is next, brings an idea or feedback, picks, adds, drops or reorders a ticket, asks "should we build X", asks to run, dispatch or take tickets, or asks for a release.
+description: The Coordinator's loop for a project built by parallel AI sessions — say where the project stands, turn an idea or a ticket into settled work (MVP check with a devil's-advocate pass, grill, design foundations, design gate), start one session per ticket as a builder or designer, keep the domino going (blocked-by links; each merge starts the tickets it unblocks), review and merge into the integration branch, archive, and release. Use when the user asks where the project stands or what is next, brings an idea or feedback, picks, adds, drops or reorders a ticket, asks "should we build X", asks to run, dispatch or take tickets, asks to turn Mobbin design references on or off, or asks for a release.
 ---
 
 # domino-agents
@@ -38,7 +38,7 @@ Linear, GitHub Issues, Jira and local files are in [TRACKERS.md](TRACKERS.md).
 | A ticket is MVP-checked, or the approver adds, drops, reorders or reverses something | [MVP.md](MVP.md), and its devil's advocate [ADVOCATE.md](ADVOCATE.md) |
 | A ticket is grilled, here or in a grill session | [GRILL.md](GRILL.md) |
 | The project has screens but no design brief or foundations yet, or they change | [FOUNDATIONS.md](FOUNDATIONS.md) |
-| A ticket draws or changes anything a person sees | [DESIGN.md](DESIGN.md) |
+| A ticket draws or changes anything a person sees; the approver asks to turn Mobbin references on or off | [DESIGN.md](DESIGN.md) |
 | A pull request merged into `<integration>`, or the approver asks to release | [RELEASE.md](RELEASE.md) |
 
 ## Trust: whose words are instructions
