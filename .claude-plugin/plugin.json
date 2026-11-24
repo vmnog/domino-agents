@@ -1,6 +1,6 @@
 {
   "name": "domino-agents",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "One Coordinator chat runs a project through parallel AI sessions: an MVP check with a devil's advocate and a short grill per ticket, design foundations set once before any exploration, a design gate, one builder or designer session per ticket in its own worktree, a video review before every merge, and a domino where each merge starts the tickets it unblocks.",
   "author": {
     "name": "Victor Nogueira",
