@@ -76,12 +76,20 @@ there.
    `set_session_title` on `self`). If `list_sessions` shows another live session with that title,
    say so in one line: its sub-sessions stay linked to it, and this thread manages only the
    sessions it starts. Ask whether to archive the old one.
-2. **Check the model.** When Runtime → Coordinator model is not `inherit` and this session runs on
+2. **Catch up the config after an update.** Compare the config's fields with
+   [config-template.md](config-template.md). A field the template has and the config lacks came
+   with an update of this skill. Ask the approver about all of them in one round (GRILL.md → *The
+   grill*), each with numbered options and the one SETUP.md §3 would recommend first. Say in one
+   line that this is a new step of the loop, and what it does. Write each answer into the config
+   and get it into `<integration>` the way SETUP.md step 4.6 does, with the approver's yes. Until a
+   field is answered, it keeps the meaning its template note gives a missing field, and nothing
+   else waits for it.
+3. **Check the model.** When Runtime → Coordinator model is not `inherit` and this session runs on
    another model (*Models*, below), say so in one line and ask the approver to switch: the model
    menu in Claude Desktop, `/model <family>` in Claude Code. You never switch your own model, and
    you never write a settings file for it (*Trust*). When Session model ranks above Coordinator
    model, say that sub-sessions will run on the Coordinator's model instead.
-3. **Explain sub-sessions**, once per thread, in these words or shorter:
+4. **Explain sub-sessions**, once per thread, in these words or shorter:
    > I am the Coordinator. I keep the plan, and I start one sub-session for each ticket. A grill
    > session asks you the ticket's questions. A builder builds it. A designer draws its boards.
    > Each sub-session shows under this thread. You can open it and answer it there. When a
@@ -89,7 +97,7 @@ there.
    > next ones. I start a new session on this computer only while enough memory stays free.
    > Nothing merges before your OK of the evidence, and everything merges into `<integration>`,
    > never into `<production>`.
-4. **Then STATUS.md**, and run the sweep (§6).
+5. **Then STATUS.md**, and run the sweep (§6).
 
 ## How to talk to the approver
 

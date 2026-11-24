@@ -195,6 +195,25 @@ API prices. A day of five tickets in parallel costs several times that. The opti
    and [AgentsORG/design-engineering](https://github.com/AgentsORG/design-engineering). Some of these
    also ship as Claude Code plugins: install each set one way only, or it is listed twice.
 
+   **Optional: Mobbin references.** With this on, a designer searches
+   [Mobbin](https://mobbin.com) for real apps' screens and flows before it draws a screen or
+   feature your project has no reference for yet: nothing in the code, the design file, the old app
+   or the brief shows it. Options still use only your own foundations; the references shape layout
+   and flow. It needs a Mobbin account, the Mobbin MCP and
+   [ddruids/mobbin-skill](https://github.com/ddruids/mobbin-skill) (`mobbin-ui-research`). Read the
+   skill first, then:
+
+   ```bash
+   claude mcp add mobbin --transport http https://api.mobbin.com/mcp
+   ```
+
+   ```bash
+   npx skills add ddruids/mobbin-skill#<commit>
+   ```
+
+   The first run asks whether to use it (Design → External references in the config). A project
+   set up before this step existed is asked the next time the Coordinator starts.
+
 4. **The first run.** In a new session in the project, type:
 
    ```text
@@ -262,7 +281,9 @@ when something was renamed or removed. Then:
 | Copied files | `git -C ~/src/domino-agents pull`, then copy them again |
 
 Restart Claude Code after a plugin update. Your config, `docs/agents/domino-agents.md`, is yours:
-an update never touches it, so add any new field a release names by hand.
+an update never touches it. When a release adds a field, the Coordinator asks you about it the next
+time it starts, and writes your answer into the config with your yes. You can also add the line a
+release names by hand.
 
 ## Uninstall
 
@@ -312,7 +333,7 @@ Then say "what's next", "take ABC-12", or describe an idea.
 - adds the evidence folder to `.gitignore` (or `.git/info/exclude`);
 - creates the integration branch when there is none. Then the setup files get one commit on `main`
   first, and `staging` is cut from it: the only commit `main` gets outside a release;
-- installs the memory guard, when you say yes.
+- points you to the memory guard's install steps, when you say yes. You install it yourself.
 
 ## A normal day
 
@@ -389,6 +410,7 @@ block.
 | `/to-tickets`, `/wait-what` | You type them: cut a feature into tickets; ask for a re-pitch | The Coordinator cuts tickets itself; ask "say it simpler" |
 | The design skills (`better-ui`, `better-layout`, `transitions-dev`…) and a `prototype` skill | Designers, and builders on visible changes | Designers work from your project's own design rules |
 | A design MCP (Paper, Figma, Pencil) | Designers, the design gate | Boards are code variants and screenshots |
+| `mobbin-ui-research` and the Mobbin MCP (optional, turned on in the config) | Designers, before a screen the project has no reference for | Designers draw from your project alone |
 
 ## Words you'll see
 

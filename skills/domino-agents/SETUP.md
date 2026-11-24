@@ -25,8 +25,9 @@ Read what exists; ask only what looking cannot answer.
   page. FOUNDATIONS.md → *When it runs* says what each finding means.
 - This session's model: its family is the recommended Coordinator model.
 - This session's tools and skills: `start_session` present means the runtime is `claude-desktop`;
-  the `mattpocock-skills` skills and the design skills (`better-ui`); a tracker MCP (Linear, Jira); a design MCP
-  (Paper, Figma, Pencil); `gh auth status`.
+  the `mattpocock-skills` skills and the design skills (`better-ui`); the `mobbin-ui-research` skill
+  and a Mobbin MCP (its `search_screens` tool); a tracker MCP (Linear, Jira); a design MCP (Paper,
+  Figma, Pencil); `gh auth status`.
 - The operating system, for the memory guard (macOS and Linux are supported).
 
 ## 2. Check the prerequisites
@@ -40,6 +41,7 @@ Show the approver one table: each prerequisite, present or missing, and what is 
 | A tracker that answers one read call (list the milestones) | Every step | Stop and fix the connection. |
 | `gh` (or `glab`) logged in, when the repository has a remote | PRs, the duplicate-work check | Stop and ask the approver to log in. With no remote, round S asks about the code host instead. |
 | A design tool's MCP | The design gate's boards | Design → Tool is none: boards are code variants and screenshots (DESIGN.md). |
+| The `mobbin-ui-research` skill and the Mobbin MCP (README → *Install*, step 3), only when the approver wants Mobbin references | Designers, on a screen the project has no reference for (DESIGN.md → *External references*) | Design → External references is none: designers draw from the project alone. |
 
 **Installs are the approver's.** No agent installs a skill, a plugin or a hook, and no agent edits
 `~/.claude/` or another user-wide setting (SKILL.md → *Trust*). For each missing prerequisite,
@@ -109,7 +111,10 @@ value for certain, show it as option 1 ("keep `staging`"). Each round ends on it
   a command gets a secret.
 - **U, the rest**: the design tool and its explorations page; for a project with screens, what
   step 1 found of the design system, and whether the foundations ticket draws new foundations or
-  imports the ones in code (FOUNDATIONS.md); how the approver reads (plain words
+  imports the ones in code (FOUNDATIONS.md); for a project with screens, whether designers search
+  Mobbin before they draw a screen the project has no reference for (DESIGN.md → *External
+  references*: recommend `mobbin` only when step 1 found both the skill and the Mobbin MCP, else
+  `none`; with `mobbin` picked and either missing, point to the README step); how the approver reads (plain words
   on or off, the ADHD profile on or off, notes); what the agent may do on hosting without asking;
   what holds a release (early or live users); whether to install the memory guard.
 
