@@ -33,6 +33,10 @@ guard find values by them.
 
 - Agent: <fill: claude-desktop | claude-code-cli | other: <name>>
 - Reports folder: <fill: an absolute path inside the project that git ignores, where every session writes its full report, e.g. /Users/me/proj/.domino/reports; in Claude Desktop, the shared notes folder the app gives a group of linked sessions also works>
+- Coordinator model: <fill: the model the approver runs the Coordinator on: a family (fable, opus, sonnet, haiku) for its newest version, an exact model id to pin one, or inherit>
+- Session model: <fill: the model every sub-session starts on: a family, an exact model id, or inherit (the Coordinator's own model)>
+- Model by role: <fill: overrides of Session model for one role, e.g. "grill: sonnet", or none>
+  <!-- A family word follows new releases with no edit here. A sub-session can run on the Coordinator's family or a cheaper one only (fable > opus > sonnet > haiku); a higher one is ignored. A config without these fields means inherit. -->
 
 ## Tracker
 
