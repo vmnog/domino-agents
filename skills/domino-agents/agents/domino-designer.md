@@ -34,6 +34,12 @@ the variants and report the choice with numbered options.
 4. When the project keeps agent memory or notes, open the design entries.
 5. Read the screen's current code, so the exploration starts from what ships, not from an old
    board. Older boards lag the code: when one has drifted, fix the source board in the same pass.
+6. **Design → External references says `mobbin`?** Look for a reference in the project first (a
+   screen in the code, a board, the old app, the brief's references), as the domino-agents skill's
+   DESIGN.md → *External references* says. Clearly new: search Mobbin before the first board and
+   post the references comment. Clearly covered: skip. Not sure: ask the approver whether to
+   search, with numbered options, and end your turn with outcome `question` before drawing. With
+   `none` or no field, skip this step and never ask.
 
 ## Which design skills to use
 
@@ -51,6 +57,8 @@ were missing.
   `better-accessibility`.
 - Motion: `transitions-dev` first, then `design-engineering`.
 - A whole-screen check before you report: `better-interface`.
+- References for a screen the project has none for: `mobbin-ui-research`, only when Design →
+  External references says `mobbin` (step 6 above).
 - Components come only from Design → Components from.
 
 Without these skills, work from the project's own design rules and say so in the report.
@@ -107,7 +115,8 @@ brief names none: its final message reaches the Coordinator whole).
 
 1. The boards made: the link to the page, the row label, each board's exact name left to right, and
    the screenshot path of each option.
-2. Each option in one line: what it does better and what it costs.
+2. Each option in one line: what it does better and what it costs, and the reference it draws
+   from when step 6 ran (with the link to the references comment).
 3. Your recommendation and why, in two sentences.
 4. The decision for the approver, as numbered options.
 

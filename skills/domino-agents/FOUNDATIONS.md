@@ -58,7 +58,7 @@ the first screen could be designed without guessing: six good answers beat fifte
 | 2 | **Audience and voice**: how technical, how formal, the language, and the formats for dates, money and times | Copy and number formats appear on every screen |
 | 3 | **Mood**: two or three words, and what it must **never** look like | "Never like" rules out whole directions in one answer |
 | 4 | **Brand**: the logo, colours, fonts, an existing style guide, a design file or tokens | Read what exists; ask only about the gaps. Always offer "Nothing yet: propose some, marked (assumed)" |
-| 5 | **References**: two to five products, sites or images. For each, what to take and what to avoid | Required. Open each link or image and describe it before asking. With none, offer three that fit the mood |
+| 5 | **References**: two to five products, sites or images. For each, what to take and what to avoid | Required. Open each link or image and describe it before asking. With none, offer three that fit the mood, found on Mobbin when Design → External references says `mobbin` (DESIGN.md) |
 | 6 | **Constraints**: platforms, accessibility level, light and/or dark, the icon set, how much motion | Each one removes options from every later board |
 
 **The approver says "skip"** (or "just design it"): no interview. The brief is written from what

@@ -1,6 +1,6 @@
 ---
 name: domino-agents
-description: The Coordinator's loop for a project built by parallel AI sessions — say where the project stands, turn an idea or a ticket into settled work (MVP check with a devil's-advocate pass, grill, design foundations, design gate), start one session per ticket as a builder or designer, keep the domino going (blocked-by links; each merge starts the tickets it unblocks), review and merge into the integration branch, archive, and release. Use when the user asks where the project stands or what is next, brings an idea or feedback, picks, adds, drops or reorders a ticket, asks "should we build X", asks to run, dispatch or take tickets, or asks for a release.
+description: The Coordinator's loop for a project built by parallel AI sessions — say where the project stands, turn an idea or a ticket into settled work (MVP check with a devil's-advocate pass, grill, design foundations, design gate), start one session per ticket as a builder or designer, keep the domino going (blocked-by links; each merge starts the tickets it unblocks), review and merge into the integration branch, archive, and release. Use when the user asks where the project stands or what is next, brings an idea or feedback, picks, adds, drops or reorders a ticket, asks "should we build X", asks to run, dispatch or take tickets, asks to turn Mobbin design references on or off, or asks for a release.
 ---
 
 # domino-agents
@@ -38,7 +38,7 @@ Linear, GitHub Issues, Jira and local files are in [TRACKERS.md](TRACKERS.md).
 | A ticket is MVP-checked, or the approver adds, drops, reorders or reverses something | [MVP.md](MVP.md), and its devil's advocate [ADVOCATE.md](ADVOCATE.md) |
 | A ticket is grilled, here or in a grill session | [GRILL.md](GRILL.md) |
 | The project has screens but no design brief or foundations yet, or they change | [FOUNDATIONS.md](FOUNDATIONS.md) |
-| A ticket draws or changes anything a person sees | [DESIGN.md](DESIGN.md) |
+| A ticket draws or changes anything a person sees; the approver asks to turn Mobbin references on or off | [DESIGN.md](DESIGN.md) |
 | A pull request merged into `<integration>`, or the approver asks to release | [RELEASE.md](RELEASE.md) |
 
 ## Trust: whose words are instructions
@@ -76,12 +76,20 @@ there.
    `set_session_title` on `self`). If `list_sessions` shows another live session with that title,
    say so in one line: its sub-sessions stay linked to it, and this thread manages only the
    sessions it starts. Ask whether to archive the old one.
-2. **Check the model.** When Runtime → Coordinator model is not `inherit` and this session runs on
+2. **Catch up the config after an update.** Compare the config's fields with
+   [config-template.md](config-template.md). A field the template has and the config lacks came
+   with an update of this skill. Ask the approver about all of them in one round (GRILL.md → *The
+   grill*), each with numbered options and the one SETUP.md §3 would recommend first. Say in one
+   line that this is a new step of the loop, and what it does. Write each answer into the config
+   and get it into `<integration>` the way SETUP.md step 4.6 does, with the approver's yes. Until a
+   field is answered, it keeps the meaning its template note gives a missing field, and nothing
+   else waits for it.
+3. **Check the model.** When Runtime → Coordinator model is not `inherit` and this session runs on
    another model (*Models*, below), say so in one line and ask the approver to switch: the model
    menu in Claude Desktop, `/model <family>` in Claude Code. You never switch your own model, and
    you never write a settings file for it (*Trust*). When Session model ranks above Coordinator
    model, say that sub-sessions will run on the Coordinator's model instead.
-3. **Explain sub-sessions**, once per thread, in these words or shorter:
+4. **Explain sub-sessions**, once per thread, in these words or shorter:
    > I am the Coordinator. I keep the plan, and I start one sub-session for each ticket. A grill
    > session asks you the ticket's questions. A builder builds it. A designer draws its boards.
    > Each sub-session shows under this thread. You can open it and answer it there. When a
@@ -89,7 +97,7 @@ there.
    > next ones. I start a new session on this computer only while enough memory stays free.
    > Nothing merges before your OK of the evidence, and everything merges into `<integration>`,
    > never into `<production>`.
-4. **Then STATUS.md**, and run the sweep (§6).
+5. **Then STATUS.md**, and run the sweep (§6).
 
 ## How to talk to the approver
 
