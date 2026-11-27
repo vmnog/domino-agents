@@ -113,8 +113,8 @@ What the approver reviews before a merge, instead of reading code.
 - Brand assets: <fill: the folder with the logo variants, fonts and app icons, e.g. assets/brand/, or "set by <foundations ticket>", or none>
 - Icon set: <fill: the one icon library every board and screen uses, e.g. lucide-react, or "set by <foundations ticket>", or none>
 - Components from: <fill: e.g. the shadcn core registry only, or none>
-- External references: <fill: mobbin, or none. With mobbin, a designer searches Mobbin for screens and flows before it draws a screen the project has no reference for (DESIGN.md → External references). It needs the mobbin-ui-research skill and the Mobbin MCP, which the approver installs>
-  <!-- A config without External references means none. -->
+- External references: <fill: mobbin, none or never. mobbin: a designer searches Mobbin for screens and flows before it draws a screen the project has no reference for; it needs a Mobbin account, the Mobbin MCP and the mobbin-ui-research skill, which the Coordinator guides the approver through. none: no search, and the Coordinator suggests Mobbin at the first design step of each thread. never: no search and no suggestion (DESIGN.md → External references)>
+  <!-- A config without External references means none: the Coordinator asks about it when it starts. -->
   <!-- A project with screens and no brief or foundations gets a "Design foundations" ticket first (FOUNDATIONS.md). Every visible ticket is blocked by it. -->
 
 ## Keys and limits

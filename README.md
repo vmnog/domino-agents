@@ -199,30 +199,37 @@ API prices. A day of five tickets in parallel costs several times that. The opti
    [Mobbin](https://mobbin.com) for real apps' screens and flows before it draws a screen or
    feature your project has no reference for yet: nothing in the code, the design file, the old app
    or the brief shows it. When it is not sure whether a screen counts as new, it asks you first.
-   Options still use only your own foundations; the references shape layout and flow. It needs a
-   Mobbin account, the Mobbin MCP and
-   [ddruids/mobbin-skill](https://github.com/ddruids/mobbin-skill) (`mobbin-ui-research`). Read the
-   skill first, then:
+   Options still use only your own foundations; the references shape layout and flow.
 
-   ```bash
-   claude mcp add mobbin --transport http https://api.mobbin.com/mcp
-   ```
+   You don't need to set it up now. The Coordinator offers it at the first run, after an update,
+   and at the first design step of each thread until you say yes or "never". When you say yes, it
+   walks you through each step, one at a time, and waits for your "done" before the next:
 
-   ```bash
-   npx skills add ddruids/mobbin-skill#<commit>
-   ```
+   1. Sign up or sign in at [mobbin.com](https://mobbin.com). Open Settings, then MCP, to see
+      whether your account can use the MCP.
+   2. Add the Mobbin MCP, in a terminal:
 
-   The first run asks whether to use it (Design → External references in the config).
+      ```bash
+      claude mcp add --scope user --transport http mobbin https://api.mobbin.com/mcp
+      ```
 
-   **Already using domino-agents?** Update it (*Update*, below), then either:
+   3. Restart Claude Code, type `/mcp` in its chat box, pick `mobbin`, and sign in in the browser.
+   4. Read [ddruids/mobbin-skill](https://github.com/ddruids/mobbin-skill) (`mobbin-ui-research`),
+      then install it pinned to the commit the Coordinator gives you:
 
-   - start the Coordinator as usual: it notices the new config field and asks whether to turn
-     Mobbin on; or
-   - tell it, any time, "use Mobbin for design references".
+      ```bash
+      npx skills add ddruids/mobbin-skill#<commit>
+      ```
 
-   Either way it checks for the skill and the MCP, gives you the commands above for whichever is
-   missing, and writes `External references: mobbin` into your config with your yes. "Turn Mobbin
-   off" sets it back to `none`.
+   5. Start a new session: the Coordinator checks that both work and writes
+      `External references: mobbin` into your config with your yes.
+
+   You run every step yourself: sign-ins and installs are yours, and no agent types a password.
+
+   **Already using domino-agents?** Update it (*Update*, below) and start a new Coordinator
+   thread: it notices the new config field and offers Mobbin. Or tell it any time: "use Mobbin for
+   design references". "Turn Mobbin off" sets the field to `none`; "stop suggesting Mobbin" sets
+   it to `never`.
 
 4. **The first run.** In a new session in the project, type:
 
