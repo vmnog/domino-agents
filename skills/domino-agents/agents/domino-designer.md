@@ -39,7 +39,10 @@ the variants and report the choice with numbered options.
    DESIGN.md → *External references* says. Clearly new: search Mobbin before the first board and
    post the references comment. Clearly covered: skip. Not sure: ask the approver whether to
    search, with numbered options, and end your turn with outcome `question` before drawing. With
-   `none` or no field, skip this step and never ask.
+   `mobbin` but no `search_screens` tool or no `mobbin-ui-research` skill in this session (or the
+   MCP asks for a sign-in), say which in your report so the Coordinator can guide the approver,
+   and draw from the project alone. With `none`, `never` or no field, skip this step: suggesting
+   Mobbin is the Coordinator's job, not yours.
 
 ## Which design skills to use
 

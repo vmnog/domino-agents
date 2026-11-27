@@ -14,7 +14,9 @@ approver.
 
 Everything about this project lives in `docs/agents/domino-agents.md`, **the config**. Read it
 fresh at the start of every turn. When it is missing, or still holds a `<fill: …>`, run
-[SETUP.md](SETUP.md) and nothing else.
+[SETUP.md](SETUP.md) and nothing else. When it lacks a field that
+[config-template.md](config-template.md) has, an update added that field: run §0 step 2 now, once
+per thread, even in a thread that started before the update.
 
 These words, here and in the role files, stand for config values:
 
@@ -83,7 +85,9 @@ there.
    line that this is a new step of the loop, and what it does. Write each answer into the config
    and get it into `<integration>` the way SETUP.md step 4.6 does, with the approver's yes. Until a
    field is answered, it keeps the meaning its template note gives a missing field, and nothing
-   else waits for it.
+   else waits for it. A missing Design → External references, on a project with screens, is asked
+   with the options of DESIGN.md → *Suggesting it*, and a pick of Mobbin runs *Setting it up* there
+   right after this round.
 3. **Check the model.** When Runtime → Coordinator model is not `inherit` and this session runs on
    another model (*Models*, below), say so in one line and ask the approver to switch: the model
    menu in Claude Desktop, `/model <family>` in Claude Code. You never switch your own model, and
@@ -224,7 +228,9 @@ person sees:
    `<explorations>`, even when there is only one board and the grill already chose the layout in
    words: "picked in words" is not "OK'd as drawn". The approver OKs or picks the boards there;
    then they move to the flow page, and only then does a builder build that UI against them. Never
-   write "straight to the flow page" in a decisions comment or a brief.
+   write "straight to the flow page" in a decisions comment or a brief. Before this thread's first
+   designer starts, when Design → External references is `none` or missing, suggest Mobbin
+   (DESIGN.md → *Suggesting it*); the designer starts whatever the answer.
 4. **A ticket that is both backend and frontend can be split.** The backend half may go to a
    builder as soon as its data shape is settled, with the frontend half held until the boards are
    picked. Say so in the builder's brief: "backend only; list the states that need a board".
